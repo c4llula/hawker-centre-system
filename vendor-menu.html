@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Management</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    .sidebar {
+      width: 180px;
+      height: 100%;
+      background: linear-gradient(180deg, #69a2b0, #52ad9c);
+      padding: 10px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      box-shadow: 1px 0 10px lightgray;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 20px;
+    }
+
+    .sidebar ul li {
+        margin-bottom: 15px;;
+    }
+
+    .sidebar ul li {
+        display: flex;
+        padding: 10px;
+        color: #FFFFFF;
+        border-bottom: 1px solid #0D6E5F;
+        text-decoration: none;
+        text-align: center;
+        margin-bottom: 15px;;
+    }
+
+    .content {
+      margin-left: 200px;
+      padding: 20px;
+    }
+
+    .top-bar {
+      text-align: right;
+      margin-bottom: 15px;
+    }
+
+    .top-bar button {
+        background-color: lightslategray;
+        color: white;
+      margin-left: 5px;
+      padding: 12px 12px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 1px 0px 5px lightgrey;
+
+    }
+
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid lightgrey;
+        background-color: white;
+        box-shadow: 1px 0px 10px lightgrey;
+    }
+
+    thead {
+        background-color: #93a392;
+        color: white;
+    }
+
+    th {
+        padding: 10px;
+    }
+
+    tbody {
+        text-align: center;
+    }
+
+    td {
+        border-bottom: 1px solid lightgrey;
+        padding: 20px;
+    }
+
+    p {
+        font-size: 40px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+
+    .action-btn {
+      margin-right: 5px;;
+      color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+    }
+
+    .edit {
+        background-color: #59a96a;
+    }
+
+    .delete {
+        background-color: #b6174b;
+    }
+
+    .availability {
+        font-style: italic;
+    }
+
+
+    
+
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <ul>
+      <li>My Store</li>
+      <li>Menu</li>
+      <li>Orders</li>
+      <li>Reset Password</li>
+      <li>Rental Agreement</li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <div class="top-bar">
+      <button id="addmenu">Add Menu</button>
+      <button id="menulist">Menu List</button>
+    </div>
+    <p>
+        Menu
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Food Item</th>
+          <th>Cuisine</th>
+          <th>Price</th>
+          <th>Availability</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Burger</td>
+          <td>American</td>
+          <td>$5.00</td>
+          <td class="availability">Available</td>
+          <td>
+            <button class="action-btn edit">Edit</button>
+            <button class="action-btn delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Roti Prata</td>
+          <td>Indian (South Indian)</td>
+          <td>$4.00</td>
+          <td class="availability">Unavailable</td>
+          <td>
+            <button class="action-btn edit">Edit</button>
+            <button class="action-btn delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Chicken Rice</td>
+          <td>Chinese (Hainanese)</td>
+          <td>$3.30</td>
+          <td class="availability">Available</td>
+          <td>
+            <button class="action-btn edit">Edit</button>
+            <button class="action-btn delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Laksa</td>
+          <td>Peranakan (Chinese-Malay)</td>
+          <td>$6.50</td>
+          <td class="availability">Available</td>
+          <td>
+            <button class="action-btn edit">Edit</button>
+            <button class="action-btn delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Chark Kway Teow</td>
+          <td>Chinese</td>
+          <td>$4.20</td>
+          <td class="availability">Available</td>
+          <td>
+            <button class="action-btn edit">Edit</button>
+            <button class="action-btn delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Satay</td>
+          <td>Malay</td>
+          <td>$1.00/stick</td>
+          <td class="availability">Available</td>
+          <td>
+            <button class="action-btn edit">Edit</button>
+            <button class="action-btn delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Nasi Lemak</td>
+          <td>Malay</td>
+          <td>$3.50</td>
+          <td class="availability">Available</td>
+          <td>
+            <button class="action-btn edit">Edit</button>
+            <button class="action-btn delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Hokkien Mee</td>
+          <td>Chinese (Fujian)</td>
+          <td>$5.40</td>
+          <td class="availability">Unavailable</td>
+          <td>
+            <button class="action-btn edit">Edit</button>
+            <button class="action-btn delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Ayam Penyet</td>
+          <td>Indonesian</td>
+          <td>$5.30</td>
+          <td class="availability">Available</td>
+          <td>
+            <button class="action-btn edit">Edit</button>
+            <button class="action-btn delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Teh Tarik</td>
+          <td>Indian-Muslim/Local</td>
+          <td>$1.20</td>
+          <td class="availability">Available</td>
+          <td>
+            <button class="action-btn edit">Edit</button>
+            <button class="action-btn delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Bandung</td>
+          <td>Indonesian</td>
+          <td>$1.70</td>
+          <td class="availability">Available</td>
+          <td>
+            <button class="action-btn edit">Edit</button>
+            <button class="action-btn delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Mee Goreng</td>
+          <td>Indian-Muslim</td>
+          <td>$4.30</td>
+          <td class="availability">Available</td>
+          <td>
+            <button>Edit</button>
+            <button>Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
