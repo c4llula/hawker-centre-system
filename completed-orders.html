@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Management</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    .sidebar {
+      width: 180px;
+      height: 100%;
+      background: linear-gradient(180deg, #69a2b0, #52ad9c);
+      padding: 10px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      box-shadow: 1px 0 10px lightgray;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 20px;
+    }
+
+    .sidebar ul li {
+        margin-bottom: 15px;;
+    }
+
+    .sidebar ul li {
+        display: flex;
+        padding: 10px;
+        color: #FFFFFF;
+        border-bottom: 1px solid #0D6E5F;
+        text-decoration: none;
+        text-align: center;
+        margin-bottom: 15px;;
+    }
+
+    .content {
+      margin-left: 200px;
+      padding: 20px;
+      width: 120%;
+    }
+
+    .top-bar {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    .top-bar button {
+        background-color: lightslategray;
+        color: white;
+      margin-left: 5px;
+      padding: 12px 20px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 1px 0px 5px lightgrey;
+    }
+
+    #action {
+        padding: 10px 100px;
+    }
+
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid lightgrey;
+        background-color: white;
+        box-shadow: 1px 0px 10px lightgrey;
+    }
+
+    thead {
+        background-color: #93a392;
+        color: white;
+    }
+
+    th {
+        padding: 10px;
+    }
+
+    tbody {
+        text-align: center;
+    }
+
+    td {
+        padding: 10px 5px;
+        border-bottom: 1px solid lightgrey;
+    }
+
+    p {
+        font-size: 40px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+    
+    .cancelled {
+        font-style: italic;
+        color: #9A275A;
+    }
+
+    .completed {
+        color: #5998C5;
+        font-style: italic;
+    }
+
+    .cancelled-order {
+        background-color: #F4CCCC;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <ul>
+      <li>My Store</li>
+      <li>Menu</li>
+      <li>Orders</li>
+      <li>Reset Password</li>
+      <li>Rental Agreement</li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <div class="top-bar">
+      <button>Order Requests</button>
+      <button>Current Requests</button>
+      <button>Orders Completed</button>
+    </div>
+    <p>
+        Orders Completed
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th id=""action">Action</th>
+          <th>Order Id</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Customer Name</th>
+          <th>Food Items</th>
+          <th>Quantity</th>
+          <th>Grand Total ($)</th>
+          <th>Payment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class = "completed">Completed</td>
+          <td>OARLK23</td>
+          <td>12/27/2025</td>
+          <td>18:07PM</td>
+          <td>Leris Kuwan</td>
+          <td>Pasta<br>Iced Lemon Tea
+          </td>
+          <td>1<br>1
+          </td>
+          <td>$7.50</td>
+          <td>Online</td>
+        </tr>
+        <tr>
+          <td class = "completed">Completed</td>
+          <td>OARKH14</td>
+          <td>12/27/2025</td>
+          <td>18:10PM</td>
+          <td>Callula Febriajie</td>
+          <td>Fries<br>Milo
+          </td>
+          <td>1<br>2
+          </td>
+          <td>$8.00</td>
+            <td>PayNow</td>
+        </tr>
+        <tr>
+          <td class = "completed">Completed</td>
+          <td>OARYL07</td>
+          <td>12/27/2025</td>
+          <td>18:10PM</td>
+          <td>Lee Yan Lin</td>
+          <td>Salad
+          </td>
+          <td>1
+          </td>
+          <td>$5.60</td>
+          <td>PayNow</td>
+        </tr>
+        <tr class = "cancelled-order">
+          <td class = "cancelled">Cancelled</td>
+          <td>OARML27</td>
+          <td>12/27/2025</td>
+          <td>18:11PM</td>
+          <td>Tan MingLi</td>
+          <td>Steak
+          </td>
+          <td>1
+          </td>
+          <td>$11.00</td>
+          <td>Cash</td>
+        </tr>
+      </tbody>
+        <tr class = "cancelled-order">
+          <td class = "cancelled">Cancelled</td>
+          <td>OARLB23</td>
+          <td>12/27/2025</td>
+          <td>18:12PM</td>
+          <td>Louis Ng</td>
+          <td>Spaghetti
+          </td>
+          <td>2
+          </td>
+          <td>$10.20</td>
+          <td>Cash</td>
+        </tr>
+        <tr>
+          <td class = "completed">Completed</td>
+          <td>OARRT25</td>
+          <td>12/27/2025</td>
+          <td>18:13PM</td>
+          <td>Rayne Tok</td>
+          <td>Burger<br>Apple Juice
+          </td>
+          <td>2<br>1
+          </td>
+          <td>$9.70</td>
+          <td>PayNow</td>
+        </tr>
+        <tr>
+          <td class = "completed">Completed</td>
+          <td>OARRC30</td>
+          <td>12/27/2025</td>
+          <td>18:15PM</td>
+          <td>Reanne Chan</td>
+          <td>McWings
+          </td>
+          <td>2
+          </td>
+          <td>$5.60</td>
+          <td>Online</td>
+        </tr>
+        <tr class = "cancelled-order">
+          <td class = "cancelled">Cancelled</td>
+          <td>OARWU76</td>
+          <td>12/27/2025</td>
+          <td>18:20PM</td>
+          <td>Cheyenne Tan</td>
+          <td>Chicken Nuggets
+          </td>
+          <td>7
+          </td>
+          <td>$6.30</td>
+          <td>Online</td>
+        </tr>
+    </table>
+  </div>
+</body>
+</html>

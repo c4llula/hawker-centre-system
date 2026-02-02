@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Management</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    .sidebar {
+      width: 180px;
+      height: 100%;
+      background: linear-gradient(180deg, #69a2b0, #52ad9c);
+      padding: 10px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      box-shadow: 1px 0 10px lightgray;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 20px;
+    }
+
+    .sidebar ul li {
+        margin-bottom: 15px;;
+    }
+
+    .sidebar ul li {
+        display: flex;
+        padding: 10px;
+        color: #FFFFFF;
+        border-bottom: 1px solid #0D6E5F;
+        text-decoration: none;
+        text-align: center;
+        margin-bottom: 15px;;
+    }
+
+    .content {
+      margin-left: 200px;
+      padding: 20px;
+      width: 120%;
+    }
+
+    .top-bar {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    .top-bar button {
+        background-color: lightslategray;
+        color: white;
+      margin-left: 5px;
+      padding: 12px 20px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 1px 0px 5px lightgrey;
+    }
+
+    #action {
+        padding: 10px 100px;
+    }
+
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid lightgrey;
+        background-color: white;
+        box-shadow: 1px 0px 10px lightgrey;
+    }
+
+    thead {
+        background-color: #93a392;
+        color: white;
+    }
+
+    th {
+        padding: 10px;
+    }
+
+    tbody {
+        text-align: center;
+    }
+
+    td {
+        padding: 10px 5px;
+        border-bottom: 1px solid lightgrey;
+    }
+
+    p {
+        font-size: 40px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+
+    .button {
+      margin-right: 5px;;
+      color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+    }
+    
+    .set-prepared {
+        background-color: #5c6fa8;
+    }
+
+    .prepared {
+        background-color: #60935D;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <ul>
+      <li>My Store</li>
+      <li>Menu</li>
+      <li>Orders</li>
+      <li>Reset Password</li>
+      <li>Rental Agreement</li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <div class="top-bar">
+      <button>Order Requests</button>
+      <button>Current Requests</button>
+      <button>Orders Completed</button>
+    </div>
+    <p>
+        Current Orders
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th id=""action">Action</th>
+          <th>Order Id</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Customer Name</th>
+          <th>Food Items</th>
+          <th>Quantity</th>
+          <th>Grand Total ($)</th>
+          <th>Payment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <button class="prepared button">Prepared</button>
+          </td>
+          <td>OARXD56</td>
+          <td>1/1/2026</td>
+          <td>18:07PM</td>
+          <td>John Doe</td>
+          <td>Pizza<br>Milkshake
+          </td>
+          <td>1<br>2
+          </td>
+          <td>$12.50</td>
+          <td>Online</td>
+        </tr>
+        <tr>
+          <td>
+                <button class="set-prepared button">Set Prepared</button>
+          </td>
+          <td>OARCF27</td>
+          <td>1/1/2026</td>
+          <td>18:10PM</td>
+          <td>Karhienz</td>
+          <td>Burger<br>Bandung
+          </td>
+          <td>2<br>1
+          </td>
+          <td>$10.50</td>
+            <td>Cash</td>
+        </tr>
+        <tr>
+          <td>
+                <button class="set-prepared button">Set Prepared</button>
+          </td>
+          <td>OARNT24</td>
+          <td>1/1/2026</td>
+          <td>18:10PM</td>
+          <td>Nigel Tay</td>
+          <td>Double Quarter Pounder
+          </td>
+          <td>1
+          </td>
+          <td>$5.60</td>
+          <td>PayNow</td>
+        </tr>
+        <tr>
+          <td>
+                <button class="set-prepared button">Set Prepared</button> 
+          </td>
+          <td>OARYJ21</td>
+          <td>1/1/2026</td>
+          <td>18:11PM</td>
+          <td>Yeong Jong</td>
+          <td>WingStop
+          </td>
+          <td>4
+          </td>
+          <td>$11.00</td>
+          <td>PayNow</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
