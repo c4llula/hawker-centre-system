@@ -1,4 +1,4 @@
-// 1. Setup a starting balance for the user (Simulation)
+// 1. start with 5000 points for simulation
 let userPoints = 5000;
 
 // 2. This function runs the moment you click a Reward/Deal box
