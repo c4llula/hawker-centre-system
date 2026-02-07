@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const STORAGE_KEY = "hawkersgoCart";
     const LIKES_KEY = "hawkersgoLikes";
 
-    // Initialize likes on page load
+    // Initialize likes and cart on page load
     restoreLikedItems();
     updateLikeCounter();
+    restoreCartUI();
 
     // 1. Helper: Convert "S$5.50" string to 5.50 number
     const parsePrice = (str) => parseFloat(str.replace(/[^\d.-]/g, ''));
@@ -12,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // 2. Add to Cart Logic
     document.addEventListener("click", function(e) {
         if (e.target.classList.contains("add-btn")) {
+            console.log("Add button clicked"); // Debug log
+            
             const item = e.target.closest(".menu-item");
             const baseName = item.querySelector("h3").textContent;
             const basePrice = parsePrice(item.querySelector(".price").textContent);
@@ -19,19 +22,33 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let finalName = baseName;
             let addedPrice = 0;
+            let selectedAddons = [];
 
             // Find all checked boxes in THIS item
             const checkboxes = item.querySelectorAll(".addon-checkbox:checked");
+            console.log("Checkboxes found:", checkboxes.length); // Debug
+            
             checkboxes.forEach(cb => {
                 const labelText = cb.parentElement.textContent.trim();
-                const nameOnly = labelText.split(" (+")[0];
-                const priceOnly = parsePrice(labelText.split("(+")[1] || "0");
+                console.log("Label text:", labelText); // Debug
+                
+                // Split to get addon name and price
+                const nameOnly = labelText.split(" (+")[0].trim();
+                const priceMatch = labelText.match(/\+S\$(\d+\.\d+)/);
+                const priceOnly = priceMatch ? parseFloat(priceMatch[1]) : 0;
+                
+                console.log("Addon name:", nameOnly, "Price:", priceOnly); // Debug
                 
                 finalName += ` + ${nameOnly}`;
                 addedPrice += priceOnly;
+                selectedAddons.push(nameOnly);
             });
 
             const totalItemPrice = basePrice + addedPrice;
+            
+            console.log("Final name:", finalName); // Debug
+            console.log("Total price:", totalItemPrice); // Debug
+            console.log("Selected addons:", selectedAddons); // Debug
 
             // Save to localStorage
             let cart = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
@@ -42,11 +59,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 cart[finalName] = {
                     price: "S$" + totalItemPrice.toFixed(2),
                     quantity: 1,
-                    stall: stallName
+                    stall: stallName,
+                    baseName: baseName,
+                    addons: selectedAddons
                 };
             }
 
             localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+            
+            console.log("Cart saved:", cart); // Debug log
             
             // Update UI
             e.target.style.display = "none";
@@ -71,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     delete cart[cartKey];
                     item.querySelector(".qty").style.display = "none";
                     item.querySelector(".add-btn").style.display = "block";
+                    item.removeAttribute("data-cart-key");
                 }
             }
             if (cart[cartKey]) {
@@ -87,21 +109,17 @@ document.addEventListener("DOMContentLoaded", function() {
             
             e.target.classList.toggle("active");
             
-            // Get all likes from localStorage
             let allLikes = JSON.parse(localStorage.getItem(LIKES_KEY)) || {};
             
-            // Initialize stall array if it doesn't exist
             if (!allLikes[stallName]) {
                 allLikes[stallName] = [];
             }
             
             if (e.target.classList.contains("active")) {
-                // Add to liked items
                 if (!allLikes[stallName].includes(itemName)) {
                     allLikes[stallName].push(itemName);
                 }
             } else {
-                // Remove from liked items
                 allLikes[stallName] = allLikes[stallName].filter(name => name !== itemName);
             }
             
@@ -113,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // 5. Restore liked items on page load
     function restoreLikedItems() {
         const allLikes = JSON.parse(localStorage.getItem(LIKES_KEY)) || {};
-        const stallName = document.querySelector("h1").textContent;
+        const stallName = document.querySelector("h1") ? document.querySelector("h1").textContent : "";
         const likedItems = allLikes[stallName] || [];
         
         document.querySelectorAll(".menu-item").forEach(item => {
@@ -127,18 +145,51 @@ document.addEventListener("DOMContentLoaded", function() {
     // 6. Update like counter display
     function updateLikeCounter() {
         const allLikes = JSON.parse(localStorage.getItem(LIKES_KEY)) || {};
-        const stallName = document.querySelector("h1").textContent;
+        const stallName = document.querySelector("h1") ? document.querySelector("h1").textContent : "";
         const likeCount = (allLikes[stallName] || []).length;
         
-        // Update or create counter element
         let counter = document.querySelector(".like-counter");
         if (!counter) {
             counter = document.createElement("div");
             counter.className = "like-counter";
             const subtitle = document.querySelector(".subtitle");
-            subtitle.parentNode.insertBefore(counter, subtitle.nextSibling);
+            if (subtitle) {
+                subtitle.parentNode.insertBefore(counter, subtitle.nextSibling);
+            }
         }
         
         counter.innerHTML = `<span class="heart-icon">♥</span> ${likeCount} ${likeCount === 1 ? 'like' : 'likes'} on this stall`;
+    }
+
+    // 7. Restore cart UI on page load
+    function restoreCartUI() {
+        const cart = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+        const currentStall = document.querySelector("h1") ? document.querySelector("h1").textContent : "";
+        
+        if (!currentStall) return;
+        
+        document.querySelectorAll(".menu-item").forEach(item => {
+            const itemName = item.querySelector("h3").textContent;
+            let totalQuantity = 0;
+            let matchingKey = null;
+            
+            Object.keys(cart).forEach(cartKey => {
+                if (cart[cartKey].stall === currentStall && 
+                    (cart[cartKey].baseName === itemName || cartKey === itemName)) {
+                    totalQuantity += cart[cartKey].quantity;
+                    if (!matchingKey) matchingKey = cartKey;
+                }
+            });
+            
+            if (totalQuantity > 0 && matchingKey) {
+                item.querySelector(".add-btn").style.display = "none";
+                
+                const qtyDiv = item.querySelector(".qty");
+                qtyDiv.style.display = "flex";
+                qtyDiv.querySelector("span").textContent = totalQuantity;
+                
+                item.setAttribute("data-cart-key", matchingKey);
+            }
+        });
     }
 });
