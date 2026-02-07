@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodApp - Payment Failed</title>
+    <link rel="stylesheet" href="payment-failure.css">
+</head>
+<body>
+    <main class="container" style="text-align: center;">
+        <header class="header">
+            <div class="status-icon">✕</div>
+            <h1 style="color: #333;">Payment Failed</h1>
+            <p>We couldn't process your transaction.</p>
+        </header>
+
+        <div class="error-box">
+            <p style="color: #666; font-size: 14px;">Reason: Insufficient funds or card declined. Please check your payment details and try again.</p>
+        </div>
+
+        <button onclick="window.history.back()" class="btn retry-btn">Try Again</button>
+        <a href="Checkout.html" class="btn home-btn" style="text-decoration: none; display: block;">Return to Home</a>
+
+        <footer class="form-footer">
+            <p>Having trouble? <a href="#">Use a different card</a></p>
+        </footer>
+    </main>
+</body>
+</html>

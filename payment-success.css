@@ -1,0 +1,103 @@
+/* General Styling */
+body {
+    background-color: #f8f9fa; /* Matches the light gray background */
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #ffffff;
+    width: 90%;
+    max-width: 450px;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Header & Success Icon */
+.header h1 {
+    color: #5b6da3; /* Matches the 'Checkout' and Section headers */
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.status-icon {
+    font-size: 3rem;
+    color: #4caf50; /* Success Green */
+    background-color: #e8f5e9;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+}
+
+.header p {
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+/* Order Info Box */
+.order-info {
+    text-align: left;
+    border-top: 1px solid #639a93; /* The teal line from the image */
+    border-bottom: 1px solid #e0e0e0;
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+}
+
+.order-info p {
+    margin: 0.8rem 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+}
+
+.order-info strong {
+    color: #555;
+    font-weight: 500;
+}
+
+/* Specific styling for the Order Number to stand out */
+.order-info p:first-child {
+    color: #b02a37; /* Matches the 'Total' red color from the image */
+    font-weight: bold;
+}
+
+/* Buttons */
+.home-btn {
+    background-color: #5b6da3; /* Matches the 'Confirm Order' button */
+    color: white !important;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    margin-bottom: 1.5rem;
+}
+
+.home-btn:hover {
+    background-color: #4a5a85;
+}
+
+/* Footer */
+.form-footer {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.form-footer a {
+    color: #5b6da3;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}

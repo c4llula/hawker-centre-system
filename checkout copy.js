@@ -69,20 +69,21 @@ function placeOrder() {
     return;
   }
 
-    // 1. Simulate a payment processing delay (optional but realistic)
-  console.log("Processing payment...");
+  // 1. Simulate a payment processing delay (optional but realistic)
+    console.log("Processing payment...");
 
-  // 2. For demonstration: generate a random outcome
-  // Math.random() returns a value between 0 and 1
-  const isSuccessful = Math.random() > 0.5; // 50% chance of success
+    // 2. For demonstration: generate a random outcome
+    // Math.random() returns a value between 0 and 1
+    const random = Math.random(); // 80% chance of success
 
-  if (isSuccessful) {
-    // Redirect to the success page
-      window.location.href = 'payment-success.html';
-  } else {
-    // Redirect to the failure page
-      window.location.href = 'payment-failure.html';
-  }
+    if (random > 5) {
+        // Redirect to the success page
+        window.location.href = 'payment-failure.html';
+    } else {
+        // Redirect to the failure page
+        window.location.href = 'payment-success.html';
+    }
+}
   
   // Generate a random 4-digit order number
   const orderNum = Math.floor(1000 + Math.random() * 9000);
@@ -91,7 +92,7 @@ function placeOrder() {
   document.getElementById("orderNumber").textContent = "#" + orderNum;
   
   // Final confirmation alert
-  alert("Order Confirmed!\nYour Order Number is: #" + orderNum);
+  alert("Order Confirmed!\nYour Order Number is: #" + orderNum + "\nPlease pay cash at the stall.");
   
   // Clear the cart after order is placed
   localStorage.removeItem("hawkersgoCart");
@@ -100,4 +101,3 @@ function placeOrder() {
   setTimeout(() => {
     window.location.href = "Stalls.html";
   }, 3000);
-}
