@@ -1,77 +1,122 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
+/* Ensure the page fills the screen and pushes footer to bottom */
+html, body {
+    height: 100%;
     margin: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    background-color: #fcfcfc;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card Styling and Vertical Centering */
+.payment-container {
+    flex: 1 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    padding-top: 80px;
+    padding-bottom: 40px;
 }
 
-.container {
+.payment-page {
     background-color: #ffffff;
-    padding: 40px 30px;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    max-width: 400px;
-    width: 90%;
+    padding: 50px 35px;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+    max-width: 420px;
+    width: 95%;
+    text-align: center;
 }
 
-/* Status Icon Styling */
+/* Status Icon (Failure Red) */
 .status-icon {
-    width: 80px;
-    height: 80px;
-    background-color: #ffeded; /* Light red background */
-    color: #e74c3c;          /* Darker red icon */
-    border: 3px solid #e74c3c;
+    width: 70px;
+    height: 70px;
+    background-color: #fff1f2;
+    color: #e11d48;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
-    font-weight: bold;
-    margin: 0 auto 20px;
+    font-size: 26px;
+    margin: 0 auto 25px;
 }
 
-/* Typography */
+/* Typography Hierarchy */
 .header h1 {
-    margin: 0 0 10px 0;
     font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #111827;
+    margin-bottom: 10px;
 }
 
 .header p {
-    color: #777;
-    margin-bottom: 25px;
-}
-
-/* Error Description Box */
-.error-box {
-    background-color: #fcfcfc;
-    border: 1px solid #eee;
-    padding: 15px;
-    border-radius: 8px;
+    font-size: 15px;
+    color: #6b7280;
     margin-bottom: 30px;
 }
 
-/* Button Styling */
-.btn {
-    width: 100%;
-    padding: 14px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: none;
-    margin-bottom: 12px;
+/* Gray Reason Box */
+.error-box {
+    background-color: #f9fafb;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    border-left: 4px solid #e11d48; 
 }
 
-/* Primary Button (Try Again) */
+.error-box p {
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Centered Button Stack */
+.action-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
 .retry-btn {
-    background-color: #e74c3c;
+    background-color: #e11d48;
     color: white;
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    border: none;
 }
 
 .retry-btn:hover {
-    background-color: #c0392b;
+    opacity: 0.9;
+}
+
+.home-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4b5563;
+    text-decoration: none;
+}
+
+.home-link:hover {
+    color: #111827;
+}
+
+.different-card {
+    margin-top: 25px;
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+.different-card a {
+    color: #e11d48;
+    text-decoration: none;
+    font-weight: 600;
 }

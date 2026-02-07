@@ -1,103 +1,100 @@
-/* General Styling */
-body {
-    background-color: #f8f9fa; /* Matches the light gray background */
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+/* payment-failure.css */
+
+html, body {
+    height: 100%;
     margin: 0;
 }
 
-.container {
+body {
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    background-color: #f9fafb;
+    display: flex;
+    flex-direction: column;
+}
+
+main.container {
+    flex: 1 0 auto;
     background-color: #ffffff;
+    padding: 48px 32px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    max-width: 420px;
     width: 90%;
-    max-width: 450px;
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin: 120px auto 120px auto;
+    text-align: center;
 }
 
-/* Header & Success Icon */
+
+/* 2. Text Hierarchy */
 .header h1 {
-    color: #5b6da3; /* Matches the 'Checkout' and Section headers */
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.status-icon {
-    font-size: 3rem;
-    color: #4caf50; /* Success Green */
-    background-color: #e8f5e9;
-    width: 80px;
-    height: 80px;
-    line-height: 80px;
-    border-radius: 50%;
-    margin: 0 auto 1.5rem;
+    font-size: 1.5rem; /* 24px */
+    font-weight: 700;
+    color: #111827; /* Near black */
+    margin-bottom: 8px;
 }
 
 .header p {
-    color: #666;
-    line-height: 1.5;
-    margin-bottom: 2rem;
-}
-
-/* Order Info Box */
-.order-info {
-    text-align: left;
-    border-top: 1px solid #639a93; /* The teal line from the image */
-    border-bottom: 1px solid #e0e0e0;
-    padding: 1.5rem 0;
-    margin-bottom: 2rem;
-}
-
-.order-info p {
-    margin: 0.8rem 0;
-    display: flex;
-    justify-content: space-between;
     font-size: 0.95rem;
+    color: #6b7280; /* Neutral grey */
+    margin-bottom: 24px;
 }
 
-.order-info strong {
-    color: #555;
-    font-weight: 500;
-}
 
-/* Specific styling for the Order Number to stand out */
-.order-info p:first-child {
-    color: #b02a37; /* Matches the 'Total' red color from the image */
-    font-weight: bold;
-}
 
-/* Buttons */
+
+/* 4. Button Polish */
+
 .home-btn {
-    background-color: #5b6da3; /* Matches the 'Confirm Order' button */
-    color: white !important;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: background-color 0.2s;
-    margin-bottom: 1.5rem;
-}
-
-.home-btn:hover {
-    background-color: #4a5a85;
-}
-
-/* Footer */
-.form-footer {
     font-size: 0.9rem;
-    color: #888;
-}
-
-.form-footer a {
-    color: #5b6da3;
-    text-decoration: none;
     font-weight: 600;
+    color: #4b5563;
+    margin-top: 16px;
 }
 
-.form-footer a:hover {
-    text-decoration: underline;
+
+footer {
+    flex-shrink: 0;
+}
+
+
+/* Success Button specific color */
+.success-btn {
+    background-color: #16a34a;
+    color: white;
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+}
+
+
+/* Success Icon Color */
+.status-icon {
+    background-color: #f0fdf4; 
+    color: #16a34a;         
+    border: 1.5px solid #dcfce7;
+}
+
+/* Success Information Box */
+.success-box {
+    background-color: #f9fafb;
+    border: 1px solid #f3f4f6;
+    border-left: 4px solid #16a34a; 
+}
+
+/* Success Button */
+.success-btn {
+    background-color: #16a34a;
+}
+
+.success-btn:hover {
+    background-color: #15803d;
+    opacity: 1;
+}
+
+/* Support Link */
+.success-link {
+    color: #16a34a;
 }
