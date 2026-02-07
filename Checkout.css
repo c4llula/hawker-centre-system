@@ -145,7 +145,6 @@ header {
 .checkout-buttons {
   display: flex;
   gap: 15px;
-  margin-top: 20px;
 }
 
 .clear-btn {
@@ -160,18 +159,7 @@ header {
   flex: 1;
 }
 
-.confirm-btn {
-  background: #5c6fa8;
-  color: white;
-  padding: 16px;
-  border: none;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 10px;
-}
+
 
 .item-addons {
   font-size: 13px;
