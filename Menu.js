@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     const STORAGE_KEY = "hawkersgoCart";
+    const LIKES_KEY = "hawkersgoLikes";
+
+    // Initialize likes on page load
+    restoreLikedItems();
+    updateLikeCounter();
 
     // 1. Helper: Convert "S$5.50" string to 5.50 number
     const parsePrice = (str) => parseFloat(str.replace(/[^\d.-]/g, ''));
@@ -19,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function() {
             const checkboxes = item.querySelectorAll(".addon-checkbox:checked");
             checkboxes.forEach(cb => {
                 const labelText = cb.parentElement.textContent.trim();
-                // Extract name and price from text like "Extra Peanuts (+S$0.50)"
                 const nameOnly = labelText.split(" (+")[0];
                 const priceOnly = parsePrice(labelText.split("(+")[1] || "0");
                 
@@ -32,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function() {
             // Save to localStorage
             let cart = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
             
-            // If this exact combo exists, increase qty, else create new
             if (cart[finalName]) {
                 cart[finalName].quantity += 1;
             } else {
@@ -75,5 +78,67 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
         }
+
+        // 4. Like Button Logic
+        if (e.target.classList.contains("like")) {
+            const item = e.target.closest(".menu-item");
+            const itemName = item.querySelector("h3").textContent;
+            const stallName = document.querySelector("h1").textContent;
+            
+            e.target.classList.toggle("active");
+            
+            // Get all likes from localStorage
+            let allLikes = JSON.parse(localStorage.getItem(LIKES_KEY)) || {};
+            
+            // Initialize stall array if it doesn't exist
+            if (!allLikes[stallName]) {
+                allLikes[stallName] = [];
+            }
+            
+            if (e.target.classList.contains("active")) {
+                // Add to liked items
+                if (!allLikes[stallName].includes(itemName)) {
+                    allLikes[stallName].push(itemName);
+                }
+            } else {
+                // Remove from liked items
+                allLikes[stallName] = allLikes[stallName].filter(name => name !== itemName);
+            }
+            
+            localStorage.setItem(LIKES_KEY, JSON.stringify(allLikes));
+            updateLikeCounter();
+        }
     });
+
+    // 5. Restore liked items on page load
+    function restoreLikedItems() {
+        const allLikes = JSON.parse(localStorage.getItem(LIKES_KEY)) || {};
+        const stallName = document.querySelector("h1").textContent;
+        const likedItems = allLikes[stallName] || [];
+        
+        document.querySelectorAll(".menu-item").forEach(item => {
+            const itemName = item.querySelector("h3").textContent;
+            if (likedItems.includes(itemName)) {
+                item.querySelector(".like").classList.add("active");
+            }
+        });
+    }
+
+    // 6. Update like counter display
+    function updateLikeCounter() {
+        const allLikes = JSON.parse(localStorage.getItem(LIKES_KEY)) || {};
+        const stallName = document.querySelector("h1").textContent;
+        const likeCount = (allLikes[stallName] || []).length;
+        
+        // Update or create counter element
+        let counter = document.querySelector(".like-counter");
+        if (!counter) {
+            counter = document.createElement("div");
+            counter.className = "like-counter";
+            const subtitle = document.querySelector(".subtitle");
+            subtitle.parentNode.insertBefore(counter, subtitle.nextSibling);
+        }
+        
+        counter.innerHTML = `<span class="heart-icon">♥</span> ${likeCount} ${likeCount === 1 ? 'like' : 'likes'} on this stall`;
+    }
 });
