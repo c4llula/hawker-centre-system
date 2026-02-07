@@ -76,7 +76,7 @@ function placeOrder() {
   document.getElementById("orderNumber").textContent = "#" + orderNum;
   
   // Final confirmation alert
-  alert("Order Confirmed!\nYour Order Number is: #" + orderNum + "\nPlease pay cash at the stall.");
+  alert("Order Confirmed!\nYour Order Number is: #" + orderNum);
   
   // Clear the cart after order is placed
   localStorage.removeItem("hawkersgoCart");
@@ -85,4 +85,6 @@ function placeOrder() {
   setTimeout(() => {
     window.location.href = "Stalls.html";
   }, 3000);
+
+
 }
