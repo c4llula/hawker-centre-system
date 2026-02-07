@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HawkersGo - Stalls</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="Stalls.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img
+          src="https://via.placeholder.com/40"
+          alt="Logo"
+          width="40"
+          height="40"
+          class="d-inline-block align-text-top rounded-circle"
+        />
+        <span class="ms-2">HawkersGo</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="Stalls.html">Stalls</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="checkout.html">Checkout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1 class="text-center">🌿 HawkersGo Stalls</h1>
+    <main class="main">
+      <section class="filter">
+        <h3>Filters</h3>
+        <h4>Category</h4>
+        <fieldset>
+          <label><input type="checkbox" name="category" value="veg" /> Veg</label>
+          <label><input type="checkbox" name="category" value="no-veg" /> No Veg</label>
+        </fieldset> 
+        <h4>Cuisines</h4>
+        <fieldset>
+          <label><input type="checkbox" value="chinese" /> Chinese</label>
+          <label><input type="checkbox" value="indian" /> Indian</label>
+          <label><input type="checkbox" value="malay" /> Malay</label>
+          <label><input type="checkbox" value="western" /> Western</label>
+        </fieldset>
+      </section>
+      <section class="stalls">
+        <a href="First Menu.html" class="stall-link">
+          <article class="stall" data-category="veg" data-cuisine="malay">
+            <img src="Stall Images/Rojak, Popiah & Cockle.webp" alt="Rojak, Popiah & Cockle">
+            <p class="stall-name">Rojak, Popiah & Cockle</p>
+            <p class="stall-time">Waiting Time: 30m</p>
+          </article>
+        </a>
+        <a href="Second Menu.html" class="stall-link">
+          <article class="stall" data-category="no-veg" data-cuisine="chinese">
+            <img src="Stall Images/Tian Tian Hainanese Chicken Rice.webp" alt="Tian Tian Hainanese Chicken Rice">
+            <p class="stall-name">Tian Tian Hainanese Chicken Rice</p>
+            <p class="stall-time">Waiting Time: 30m</p>
+          </article>
+        </a>
+        <a href="#" class="stall-link">
+          <article class="stall" data-category="no-veg" data-cuisine="chinese">
+            <img src="Stall Images/Oriental Stall.webp" alt="Oriental Stall">
+            <p class="stall-name">Oriental Stall</p>
+            <p class="stall-time">Waiting Time: 30m</p>
+          </article>
+        </a>
+        <a href="#" class="stall-link">
+          <article class="stall" data-category="no-veg" data-cuisine="chinese">
+            <img src="Stall Images/Zhen Zhen Porridge.webp" alt="Zhen Zhen Porridge">
+            <p class="stall-name">Zhen Zhen Porridge</p>
+            <p class="stall-time">Waiting Time: 30m</p>
+          </article>
+        </a>
+        <a href="#" class="stall-link">
+          <article class="stall" data-category="no-veg" data-cuisine="chinese">
+            <img src="Stall Images/Jin Hua Sliced Fish Bee Hoon.webp" alt="Jin Hua Sliced Fish Bee Hoon">
+            <p class="stall-name">Jin Hua Sliced Fish Bee Hoon</p>
+            <p class="stall-time">Waiting Time: 30m</p>  
+          </article>
+        </a>
+        <a href="#" class="stall-link">
+          <article class="stall" data-category="no-veg" data-cuisine="malay">
+            <img src="Stall Images/1980 Penang Prawn Noodle.webp" alt="1980 Penang Prawn Noodle">
+            <p class="stall-name">1980 Penang Prawn Noodle</p>
+            <p class="stall-time">Waiting Time: 30m</p>
+          </article>
+        </a>
+      </section>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+          <a
+            href="#"
+            class="text-white text-decoration-none d-flex align-items-center justify-content-center justify-content-md-start"
+          >
+            <img
+              src="https://via.placeholder.com/30"
+              alt="Logo"
+              class="rounded-circle"
+            />
+            <span class="ms-2 fw-bold">HawkersGo</span>
+          </a>
+        </div>
+
+        <div class="col-md-8 text-center text-md-end">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item me-3">
+              <a href="#" class="text-white-50 text-decoration-none"
+                >Privacy Policy</a
+              >
+            </li>
+            <li class="list-inline-item me-4">
+              <a href="#" class="text-white-50 text-decoration-none">Terms</a>
+            </li>
+
+            <li class="list-inline-item">
+              <a href="#" class="text-white ms-2"
+                ><i class="bi bi-facebook"></i> FB</a
+              >
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-white ms-2"
+                ><i class="bi bi-instagram"></i> IG</a
+              >
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-white ms-2"
+                ><i class="bi bi-twitter"></i> X</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="mt-4 border-secondary" />
+      <div class="text-center text-white-50 small">
+        &copy; 2024 HawkersGo. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="Stalls.js"></script>
+</body>
+</html>
