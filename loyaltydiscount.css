@@ -7,7 +7,7 @@
     /* Card lifts up slightly */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
     /* Deeper shadow */
-    border-color: #0d6efd;
+    border-color: blue;
     /* Changes border to Bootstrap primary blue */
 }
 
@@ -16,3 +16,38 @@
     /* Card "pushes in" when clicked */
 }
 
+.card-img-top{
+    width: 250px;
+    max-height: auto;
+    object-fit:cover;
+}
+
+/* The horizontal container that allows scrolling */
+.reward-scroll-track {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1rem;
+    scrollbar-width: thin;
+    padding-bottom: 10px;
+    /* Space for the scrollbar */
+}
+
+/* The individual cards */
+.reward-card {
+    flex-shrink: 0;
+    width: 250px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.reward-card:hover {
+    transform: translateY(-5px);
+    /* Nice lift effect on hover */
+}
+
+/* Ensures images don't look squashed */
+.reward-card img {
+    height: 160px;
+    object-fit: cover;
+}
