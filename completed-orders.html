@@ -3,119 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vendor Management</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      background-color: #f5f5f5;
-    }
-
-    .sidebar {
-      width: 180px;
-      height: 100%;
-      background: linear-gradient(180deg, #69a2b0, #52ad9c);
-      padding: 10px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      box-shadow: 1px 0 10px lightgray;
-    }
-
-    .sidebar ul {
-      list-style: none;
-      padding: 20px;
-    }
-
-    .sidebar ul li {
-        margin-bottom: 15px;;
-    }
-
-    .sidebar ul li {
-        display: flex;
-        padding: 10px;
-        color: #FFFFFF;
-        border-bottom: 1px solid #0D6E5F;
-        text-decoration: none;
-        text-align: center;
-        margin-bottom: 15px;;
-    }
-
-    .content {
-      margin-left: 200px;
-      padding: 20px;
-      width: 120%;
-    }
-
-    .top-bar {
-      text-align: left;
-      margin-bottom: 15px;
-    }
-
-    .top-bar button {
-        background-color: lightslategray;
-        color: white;
-      margin-left: 5px;
-      padding: 12px 20px;
-      border-radius: 5px;
-      border: none;
-      box-shadow: 1px 0px 5px lightgrey;
-    }
-
-    #action {
-        padding: 10px 100px;
-    }
-
-
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        border: 1px solid lightgrey;
-        background-color: white;
-        box-shadow: 1px 0px 10px lightgrey;
-    }
-
-    thead {
-        background-color: #93a392;
-        color: white;
-    }
-
-    th {
-        padding: 10px;
-    }
-
-    tbody {
-        text-align: center;
-    }
-
-    td {
-        padding: 10px 5px;
-        border-bottom: 1px solid lightgrey;
-    }
-
-    p {
-        font-size: 40px;
-        margin-bottom: 20px;
-        margin-top: 10px;
-    }
-    
-    .cancelled {
-        font-style: italic;
-        color: #9A275A;
-    }
-
-    .completed {
-        color: #5998C5;
-        font-style: italic;
-    }
-
-    .cancelled-order {
-        background-color: #F4CCCC;
-    }
-
-
-  </style>
+  <title>Completed Orders</title>
+  <link rel="stylesheet" href="completed-orders.css">
 </head>
 <body>
 
@@ -260,5 +149,6 @@
         </tr>
     </table>
   </div>
+  <script src="completed-orders.js"></script>
 </body>
 </html>
