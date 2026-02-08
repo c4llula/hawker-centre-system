@@ -60,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function() {
             clone.querySelector('.description').textContent = item.desc;
             clone.querySelector('.price').textContent = `S$${item.price.toFixed(2)}`;
             
-            // ADD ADDONS IF THEY EXIST
             const addonContainer = clone.querySelector('.simple-addons');
             if (item.addons && item.addons.length > 0) {
                 item.addons.forEach(addonText => {
@@ -74,7 +73,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 addonContainer.style.display = "none";
             }
             
-            // Determine which grid to add to
             let gridId;
             if (item.cat === "classics") gridId = 'classics-grid';
             else if (item.cat === "addons") gridId = 'addons-grid';
@@ -87,12 +85,10 @@ document.addEventListener("DOMContentLoaded", function() {
         restoreLikes();
     }
     
-    // Show liked items on liked items page
     showLikedItems();
     
     // Click handlers - UPDATED FOR ADDONS
     document.addEventListener("click", function(e) {
-        // Add to cart WITH ADDONS
         if (e.target.classList.contains("add-btn")) {
             const item = e.target.closest(".menu-item");
             const baseName = item.querySelector("h3").textContent;
@@ -101,7 +97,6 @@ document.addEventListener("DOMContentLoaded", function() {
             let finalName = baseName;
             let totalPrice = basePrice;
             
-            // Add addon prices
             item.querySelectorAll(".addon-checkbox:checked").forEach(cb => {
                 const labelText = cb.parentElement.textContent.trim();
                 const addonName = labelText.split(" (+")[0];
@@ -124,13 +119,13 @@ document.addEventListener("DOMContentLoaded", function() {
             item.querySelectorAll(".addon-checkbox").forEach(cb => cb.disabled = true);
         }
         
-        // Quantity buttons
+        // quantity buttons
         if (e.target.classList.contains("qty-btn")) {
             const item = e.target.closest(".menu-item");
             const name = item.querySelector("h3").textContent;
             const cart = getCart();
             
-            // Find cart item (might have addons in name)
+            // find cart item (might have addons in name)
             let cartKey = name;
             for (const key in cart) {
                 if (key.startsWith(name + " ") || key === name) {
@@ -159,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function() {
             saveCart(cart);
         }
         
-        // Like button
+        // like button
         if (e.target.classList.contains("like")) {
             const item = e.target.closest(".menu-item");
             const name = item.querySelector("h3").textContent;
@@ -180,13 +175,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
     
-    // Helper functions
+    // helper functions
     function restoreCart() {
         const cart = getCart();
         document.querySelectorAll(".menu-item").forEach(item => {
             const name = item.querySelector("h3").textContent;
             
-            // Find if this item (with or without addons) is in cart
+            // find if this item (with or without addons) is in cart
             for (const cartKey in cart) {
                 if (cartKey === name || cartKey.startsWith(name + " + ")) {
                     item.querySelector(".add-btn").style.display = "none";

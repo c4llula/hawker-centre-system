@@ -45,14 +45,13 @@ main.container {
     margin: 0 0 10px 0;
     font-weight: bold;
 }
-
 .header p {
     font-size: 14px;
     color: #777;
     line-height: 1.5;
     margin: 0;
+    font-weight:bold;
 }
-
 .form input {
     width: 100%;
     padding: 14px;
@@ -87,44 +86,5 @@ main.container {
 
 .login-btn:hover {
     background-color: #438f81;
-}
-
-.form-footer {
-    margin-top: 20px;
-    text-align: center; /* center align everything in form footer */
-}
-
-.form-footer p:first-child {
-    margin-bottom: 20px;
-    font-size: 14px;
-    color: #666;
-    text-align: center;
-}
-
-.form-footer a {
-    color: #52ad9c;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.guest-section {
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
-
-.guest-section p {
-    margin-bottom: 15px;
-    color: #999;
-    font-size: 14px;
-    text-align: center;
-}
-
-.guest-login-btn {
-    background-color: #f0f0f0;
-    color: #555;
-}
-
-.guest-login-btn:hover {
-    background-color: #e0e0e0;
 }
 
