@@ -18,7 +18,8 @@ function showForm(formType) {
                 btn.classList.add('selected');
             }
         });
-    } else {
+    }
+     else {
         document.getElementById('vendor-form').style.display = 'flex';
         // Highlight Store Owner button in both forms
         document.querySelectorAll('.type-option').forEach(btn => {

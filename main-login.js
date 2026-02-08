@@ -32,7 +32,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     if (user) {
         // Check if user exists in database
         if (user.password === password) {
-            // ⭐ CRITICAL: Check accountType field!
+            // Check accountType field
             if (user.accountType === 'vendor') {
                 userType = 'vendor';
                 console.log('Found vendor by accountType:', user.name);
