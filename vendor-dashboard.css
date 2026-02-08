@@ -1,11 +1,6 @@
 body {
     font-family: "DM Sans", sans-serif;
 }
-
-nav {
-    padding: 3%;
-}
-
 .filter-controls {
     margin: 20px 50px;
     display: flex;
@@ -68,6 +63,7 @@ nav {
 
 .card {
     padding: 20px 0;
+    border: none;
 }
 
 h2 {
