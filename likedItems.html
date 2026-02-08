@@ -21,6 +21,66 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
     />
+    <style>
+      .liked-items {
+        margin-left: 250px;
+        padding: 20px;
+        max-width: 800px;
+      }
+
+      .liked-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #5c6fa8;
+      }
+
+      .liked-header h2 {
+        margin: 0;
+        color: darkgray;
+      }
+
+      .count {
+        margin: 0;
+        font-size: 16px;
+        color: grey;
+      }
+
+      .items-list {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+      }
+
+      .empty {
+        text-align: center;
+        padding: 40px 20px;
+        color: #888;
+        margin: 0;
+      }
+
+      .liked-item {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .item-info {
+        margin-bottom: 5px;
+      }
+
+      .item-name {
+        font-weight: bold;
+        color: #333;
+      }
+
+      .item-stall {
+        color: #5c6fa8;
+        font-size: 14px;
+      }
+      </style>
   </head>
 
   <body>
@@ -141,6 +201,16 @@
         </div>
       </navigation>
       <!--start main code for each page here-->
+        <section class="liked-items">
+          <div class="liked-header">
+            <h2>Liked Items</h2>
+            <p class="count">Total: <span id="totalCount">0</span></p>
+          </div>
+          <div id="likedItemsList" class="items-list">
+            <p class="empty">No liked items yet. <a href="Stalls.html">Browse menu</a></p>
+          </div>
+        </section>
+
     </main>
     <!-- place footer here -->
     <footer class="bg-dark text-white py-4 mt-5">
@@ -208,5 +278,6 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
+    <script src = "Menu.js"></script>
   </body>
 </html>
