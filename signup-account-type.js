@@ -69,7 +69,7 @@ function createAccount(type) {
         localStorage.setItem('currentUser', JSON.stringify(customerData));
         
         alert('Account created successfully!');
-        window.location.href = "index.html";
+        window.location.href = "main-login.html";
         
     } else {
         // Get vendor form data using vendor-specific IDs
