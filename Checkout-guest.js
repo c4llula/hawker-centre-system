@@ -77,9 +77,9 @@ function placeOrder() {
   const isSuccessful = Math.random() > 0.9; 
 
   if (isSuccessful) {
-    window.location.href = 'payment-success.html';
+    window.location.href = 'payment-success-guest.html';
   } else {
-    window.location.href = 'payment-failure.html';
+    window.location.href = 'payment-failure-guest.html';
   }
   
   const orderNum = Math.floor(1000 + Math.random() * 9000);
@@ -94,7 +94,7 @@ function placeOrder() {
   localStorage.removeItem("hawkersgoCart");
   
   setTimeout(() => {
-    window.location.href = "Stalls.html";
+    window.location.href = "Stalls-guest.html";
   }, 3000);
 }
 
