@@ -1,18 +1,36 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
+  padding-top: 56px; /* Space for fixed navbar */
   background-color: #f5f5f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+  z-index: 1050; /* Above sidebar */
+}
+
+/* Footer */
+footer {
+  z-index: 1050; /* Above sidebar */
+  position: relative;
+  margin-top: auto;
 }
 
 .sidebar {
   width: 200px;
-  height: 100%;
+  height: calc(100vh - 56px); /* Full height minus navbar */
   background: linear-gradient(180deg, #69a2b0, #52ad9c);
   padding: 20px 10px;
   position: fixed;
-  top: 0;
+  top: 56px; /* Below navbar */
   left: 0;
   box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+  z-index: 1000; /* Below navbar and footer */
+  overflow-y: auto;
 }
 
 .sidebar ul {
@@ -40,7 +58,9 @@ body {
 .content {
   margin-left: 250px;
   padding: 20px;
-  width: 120%;
+  flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .top-bar {
