@@ -25,12 +25,14 @@ function saveStoreDetails() {
             accountType: 'vendor'
         };
         
+        // Get existing users OR start with empty array
         const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
         existingUsers.push(completeVendorData);
+
+        // Save updated users array back to localStorage
         localStorage.setItem('users', JSON.stringify(existingUsers));
         
         localStorage.removeItem('vendorBasicInfo');
-        
         localStorage.setItem('currentUser', JSON.stringify(completeVendorData));
         
         alert('Vendor account created successfully!');

@@ -68,7 +68,9 @@ function createAccount(type) {
         alert('Account created successfully!');
         window.location.href = "main-login.html";
         
-    } else {
+    } 
+    
+    else {
         // Get vendor form data using vendor-specific IDs
         const vendorBasicInfo = {
             name: document.getElementById('vendor-name').value,
