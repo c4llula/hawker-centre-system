@@ -8,36 +8,36 @@ document.addEventListener("DOMContentLoaded", function() {
     function getLikes() { return JSON.parse(localStorage.getItem(likesKey)) || {}; }
     function saveLikes(likes) { localStorage.setItem(likesKey, JSON.stringify(likes)); }
     
-    // Menu data WITH ADDONS
+    // Menu data 
     const menus = {
         "rojak": [
-            // Classics WITH ADDONS
+            // Classics with Addons
             {name: "Rojak", price: 5.50, cat: "classics", img: "Menu Images/Rojak.jpg", desc: "Mixed fruits with shrimp paste sauce", addons: ["Extra Peanuts (+S$0.50)", "Extra Sauce (+S$0.50)"]},
             {name: "Popiah", price: 5.50, cat: "classics", img: "Menu Images/Popiah.jpeg", desc: "Fresh spring rolls with turnip & shrimp", addons: ["Extra Shrimp (+S$1.00)", "Extra Sauce (+S$0.50)"]},
             {name: "Cockle Laksa", price: 5.50, cat: "classics", img: "Menu Images/Cockle Laksa.jpg", desc: "Spicy coconut noodles with cockles", addons: ["Extra Cockles (+S$1.50)", "Extra Spicy (+S$0.50)"]},
             
-            // Addons (no addons for these)
+            // Addons 
             {name: "Century Egg & Tofu", price: 2.50, cat: "addons", img: "Menu Images/Century Egg & Tofu.jpg", desc: "Preserved egg with silken tofu", addons: []},
             {name: "Chicken Satays", price: 5.50, cat: "addons", img: "Menu Images/Chicken Satay Sticks.jpg", desc: "Grilled chicken skewers", addons: []},
             {name: "Tau Pok", price: 3.00, cat: "addons", img: "Menu Images/Tau Pok.jpg", desc: "Fried tofu puffs in broth", addons: []},
             
-            // DRINKS (no addons)
+            // Drinks
             {name: "Teh Tarik", price: 2.00, cat: "drinks", img: "Menu Images/Teh Tarik.jpg", desc: "Pulled milk tea", addons: []},
             {name: "Sugarcane Juice", price: 3.00, cat: "drinks", img: "Menu Images/Sugarcane Juice.jpg", desc: "Fresh sugarcane juice", addons: []},
             {name: "Iced Milo", price: 2.50, cat: "drinks", img: "Menu Images/Iced Chocolate.jpg", desc: "Chocolate malt drink", addons: []}
         ],
         "chicken": [
-            // Classics WITH ADDONS
+            // Classics with addons
             {name: "Steamed Chicken Rice", price: 5.50, cat: "classics", img: "Menu Images/steam chicken rice.jpg", desc: "Tender steamed chicken with rice", addons: ["Extra Chicken (+S$1.00)", "Extra Sauce (+S$0.50)"]},
             {name: "Roasted Chicken Rice", price: 5.50, cat: "classics", img: "Menu Images/Roasted Chicken Rice.avif", desc: "Crispy roasted chicken with rice", addons: ["Extra Chicken (+S$1.00)", "Extra Sauce (+S$0.50)"]},
             {name: "BBQ Chicken Rice", price: 5.50, cat: "classics", img: "Menu Images/BBQ Chicken Rice.webp", desc: "BBQ glazed chicken with rice", addons: ["Extra BBQ Sauce (+S$0.50)", "Extra Chicken (+S$1.00)"]},
             
-            // Addons (no addons for these)
+            // Addons 
             {name: "Extra Rice", price: 2.50, cat: "addons", img: "Menu Images/Bowl of Rice.webp", desc: "Additional fragrant rice", addons: []},
             {name: "Chicken Gizzard", price: 5.50, cat: "addons", img: "Menu Images/Chicken Gizzard.webp", desc: "Seasoned chicken gizzard", addons: []},
             {name: "Roast Pork Slices", price: 3.00, cat: "addons", img: "Menu Images/Roast Pork Slices.webp", desc: "Crispy roast pork slices", addons: []},
             
-            // DRINKS (no addons)
+            // Drinks
             {name: "Teh Tarik", price: 2.00, cat: "drinks", img: "Menu Images/Teh Tarik.jpg", desc: "Pulled milk tea", addons: []},
             {name: "Sugarcane Juice", price: 3.00, cat: "drinks", img: "Menu Images/Sugarcane Juice.jpg", desc: "Fresh sugarcane juice", addons: []},
             {name: "Iced Milo", price: 2.50, cat: "drinks", img: "Menu Images/Iced Chocolate.jpg", desc: "Chocolate malt drink", addons: []}
