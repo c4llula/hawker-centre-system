@@ -4,10 +4,23 @@
     box-sizing: border-box;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
 body {
     font-family: 'DM Sans', sans-serif;
     background-color: #f8f9fa;
-    padding-top: 60px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    margin: 0;
+    padding: 10px 0;
+    width: 100%;
 }
 
 .container {
@@ -21,7 +34,9 @@ body {
     font-size: 2.5rem;
     color: #438f81;
     margin-bottom: 30px;
+    margin-top: 20px;
 }
+
 
 .search-box {
     max-width: 600px;
