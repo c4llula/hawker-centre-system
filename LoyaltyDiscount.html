@@ -8,7 +8,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <link rel="stylesheet" href="CustomerEng.css" />
+    <link rel="stylesheet" href="loyaltydiscount.css" />
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link
@@ -105,9 +105,10 @@
           <div class="row">
             <div class="col-md-3 mb-4">
               <div class="list-group shadow-sm">
+                <!-- list group item applies display block to each <a>-->
                 <a
                   href="customereng.html"
-                  class="list-group-item list-group-item-action bg-dark text-white fw-bold disabled"
+                  class="list-group-item list-group-item-action bg-dark text-white fw-bold"
                 >
                   Customer Portal
                 </a>
@@ -144,7 +145,7 @@
                   <h5 class="fw-bold">Hawker Pass Tier</h5>
                   <div class="card mb-4 shadow-sm">
                     <img
-                      src="hawker tier pass.png"
+                      src="imgs/hawker tier pass.png"
                       class="card-img-top"
                       alt="Tier"
                     />
@@ -172,22 +173,18 @@
 
                 <div class="col-lg-8">
                   <h5 class="fw-bold mb-3">Rewards</h5>
-
-                  <div
-                    class="d-flex flex-nowrap overflow-auto gap-3 mb-5 pb-2"
-                    style="scrollbar-width: thin"
-                  >
+                  <!-- Makes a scroll wheel -->
+                  <div class="reward-scroll-track mb-5">
                     <div
-                      class="card shadow-sm flex-shrink-0 clickable-card"
-                      style="width: 250px; cursor: pointer"
+                      class="card shadow-sm reward-card clickable-card"
                       data-bs-toggle="modal"
                       data-bs-target="#redeemModal"
                       onclick="setRedeemItem('Free Drink', 500)"
                     >
                       <img
-                        src="https://via.placeholder.com/250x120?text=Reward+1"
+                        src="imgs/freedrink.png"
                         class="card-img-top"
-                        alt="Reward"
+                        alt="Free Drink"
                       />
                       <div class="card-body">
                         <h6 class="card-title fw-bold">Free Drink</h6>
@@ -199,16 +196,15 @@
                     </div>
 
                     <div
-                      class="card shadow-sm flex-shrink-0 clickable-card"
-                      style="width: 250px; cursor: pointer"
+                      class="card shadow-sm reward-card clickable-card"
                       data-bs-toggle="modal"
                       data-bs-target="#redeemModal"
-                      onclick="setRedeemItem('Free Drink', 500)"
+                      onclick="setRedeemItem('$5 Dollar Voucher', 1000)"
                     >
                       <img
-                        src="https://via.placeholder.com/250x120?text=Reward+1"
+                        src="imgs/5dollarvoucher.png"
                         class="card-img-top"
-                        alt="Reward"
+                        alt="Voucher"
                       />
                       <div class="card-body">
                         <h6 class="card-title fw-bold">$5 Voucher</h6>
@@ -220,20 +216,19 @@
                     </div>
 
                     <div
-                      class="card shadow-sm flex-shrink-0 clickable-card"
-                      style="width: 250px; cursor: pointer"
+                      class="card shadow-sm reward-card clickable-card"
                       data-bs-toggle="modal"
                       data-bs-target="#redeemModal"
-                      onclick="setRedeemItem('Free Drink', 500)"
+                      onclick="setRedeemItem('Chicken Rice', 1200)"
                     >
                       <img
-                        src="https://via.placeholder.com/250x120?text=Reward+1"
+                        src="imgs/chickenriceset.png"
                         class="card-img-top"
-                        alt="Reward"
+                        alt="Chicken Rice"
                       />
                       <div class="card-body">
-                        <h6 class="card-title fw-bold">Chicken Rice Set</h6>
-                        <p class="small text-muted mb-2">1500 Points</p>
+                        <h6 class="card-title fw-bold">Chicken Rice</h6>
+                        <p class="small text-muted mb-2">1200 Points</p>
                         <div class="mt-2 text-primary small fw-bold">
                           Click to Redeem
                         </div>
@@ -244,78 +239,30 @@
                   <h5 class="fw-bold mb-3">Member Deals</h5>
 
                   <div
-                    class="d-flex flex-nowrap overflow-auto gap-3 pb-2"
-                    style="scrollbar-width: thin"
+                    class="card mb-3 clickable-card shadow-sm border-0"
+                    style="cursor: pointer"
+                    data-bs-toggle="modal"
+                    data-bs-target="#redeemModal"
+                    onclick="
+                      setRedeemItem('1-for-1 Laksa Deal', 'Member Exclusive')
+                    "
                   >
-                    <div
-                      class="card shadow-sm flex-shrink-0 clickable-card border-0 mb-3"
-                      style="max-width: 600px; cursor: pointer"
-                      data-bs-toggle="modal"
-                      data-bs-target="#redeemModal"
-                      onclick="
-                        setRedeemItem('1-for-1 Laksa Deal', 'Member Exclusive')
-                      "
-                    >
-                      <div class="row g-0 align-items-center">
-                        <div class="col-4">
-                          <img
-                            src="laksa.png"
-                            class="img-fluid rounded-start"
-                            alt="Deal"
-                          />
-                        </div>
-
-                        <div class="col-8">
-                          <div class="card-body">
-                            <h5 class="card-title fw-bold mb-1">
-                              1-for-1 Laksa Deal
-                            </h5>
-                            <p class="card-text text-muted small">
-                              Valid at all participating Hawker Centers until
-                              Friday.
-                            </p>
-                            <div
-                              class="d-flex justify-content-between align-items-center mt-2"
-                            >
-                              <span class="badge bg-danger"
-                                >Member Exclusive</span
-                              >
-                              <span class="text-primary fw-bold small"
-                                >Click to Redeem &rarr;</span
-                              >
-                            </div>
-                          </div>
-                        </div>
+                    <div class="row g-0 align-items-center">
+                      <div class="col-4">
+                        <img
+                          src="imgs/laksa.png"
+                          class="img-fluid rounded-start"
+                          alt="Laksa Deal"
+                        />
                       </div>
-                    </div>
-
-                    <div
-                      class="card shadow-sm flex-shrink-0"
-                      style="width: 250px"
-                    >
-                      <img
-                        src="https://via.placeholder.com/300x150?text=Deal+2"
-                        class="card-img-top"
-                        alt="Deal"
-                      />
-                      <div class="card-body">
-                        <h6 class="card-title fw-bold">50% Off Dessert</h6>
-                        <span class="badge bg-success">New</span>
-                      </div>
-                    </div>
-
-                    <div
-                      class="card shadow-sm flex-shrink-0"
-                      style="width: 250px"
-                    >
-                      <img
-                        src="https://via.placeholder.com/300x150?text=Deal+3"
-                        class="card-img-top"
-                        alt="Deal"
-                      />
-                      <div class="card-body">
-                        <h6 class="card-title fw-bold">Early Bird Special</h6>
-                        <span class="badge bg-primary">Member Only</span>
+                      <div class="col-8">
+                        <div class="card-body">
+                          <h5 class="card-title fw-bold">1-for-1 Laksa Deal</h5>
+                          <p class="card-text text-muted small">
+                            Valid at all participating centers.
+                          </p>
+                          <span class="badge bg-danger">Member Exclusive</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -326,6 +273,7 @@
         </div>
       </div>
     </main>
+
     <div class="modal fade" id="redeemModal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
