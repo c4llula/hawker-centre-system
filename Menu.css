@@ -1,10 +1,10 @@
 /* Menu.css */
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   background: #f5f5f5;
   color: #333;
-  padding-top: 56px; /* Space for fixed navbar */
+  padding-top: 56px; 
 }
 
 .main-container {
@@ -263,5 +263,4 @@ footer {
 .like-counter .heart-icon {
   font-size: 18px;
   margin-right: 5px;
-  animation: heartbeat 1.5s ease-in-out infinite;
 }

@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   background: #f5f5f5;
   color: #333;
   padding: 20px;
@@ -89,8 +89,6 @@ header {
   color: #666;
   padding: 40px 20px;
 }
-
-/* Total and Clear */
 .order-footer {
   display: flex;
   justify-content: space-between;
@@ -158,9 +156,6 @@ header {
   cursor: pointer;
   flex: 1;
 }
-
-
-
 .item-addons {
   font-size: 13px;
   color: #52ad9c;
