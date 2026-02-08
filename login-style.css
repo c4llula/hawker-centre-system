@@ -75,14 +75,7 @@ main.container {
 }
 
 /* 6. Links and Buttons */
-.forgot-password {
-    text-align: right;
-    color: #52ad9c;
-    text-decoration: none;
-    font-size: 13px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-}
+
 
 .btn {
     width: 100%;
