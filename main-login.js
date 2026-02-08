@@ -50,10 +50,3 @@
         window.location.href = "home-page-guest.html"; 
     });
     
-    window.addEventListener('DOMContentLoaded', function() {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser) {
-            // user is already logged in, redirect to home page
-           
-        }
-    });
