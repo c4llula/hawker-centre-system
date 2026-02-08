@@ -85,13 +85,25 @@ main.container {
     cursor: pointer;    
 }
 
-.login-btn {
+
+
+.loginbut {
     background-color: #52ad9c;
     color: white;
     margin-top: 10px;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;    
+    text-align: center;
+    text-decoration: none;
 }
 
-.login-btn:hover {
+
+.loginbut:hover {
     background-color: #438f81;
 }
 
