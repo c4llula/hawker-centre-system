@@ -1,4 +1,4 @@
-/* Ensure the page fills the screen and pushes footer to bottom */
+
 html, body {
     height: 100%;
     margin: 0;
@@ -11,7 +11,7 @@ body {
     flex-direction: column;
 }
 
-/* Card Styling and Vertical Centering */
+
 .payment-container {
     flex: 1 0 auto;
     display: flex;
@@ -31,7 +31,6 @@ body {
     text-align: center;
 }
 
-/* Status Icon (Failure Red) */
 .status-icon {
     width: 70px;
     height: 70px;
@@ -45,7 +44,7 @@ body {
     margin: 0 auto 25px;
 }
 
-/* Typography Hierarchy */
+
 .header h1 {
     font-size: 24px;
     font-weight: 700;
@@ -60,7 +59,7 @@ body {
     margin-bottom: 30px;
 }
 
-/* Gray Reason Box */
+
 .error-box {
     background-color: #f9fafb;
     padding: 20px;
@@ -76,7 +75,7 @@ body {
     margin: 0;
 }
 
-/* Centered Button Stack */
+
 .action-area {
     display: flex;
     flex-direction: column;
