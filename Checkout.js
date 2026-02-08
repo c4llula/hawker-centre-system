@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 /**
- * Reads the flat cart object from localStorage and builds the list.
+ * Reads the cart from localStorage and builds the list
  */
 function loadCart() {
   const cartItemsContainer = document.getElementById("cartItems");
@@ -21,22 +21,35 @@ function loadCart() {
   let html = "";
   let grandTotal = 0;
   
-  // 2. Loop through the flat keys (the combined names)
+  console.log("Cart items:", items); // Debug
+  
+  // 2. Loop through cart items
   for (let combinedName in items) {
     const item = items[combinedName];
     
-    // Convert "S$5.50" to a number for math
-    const pricePerUnit = parseFloat(item.price.replace("S$", ""));
-    const rowTotal = pricePerUnit * item.quantity;
+    console.log("Processing item:", combinedName, item); // Debug
+    
+    // Get price - handle both number and "S$" string
+    let pricePerUnit;
+    if (typeof item.price === 'string') {
+      // If price is "S$5.50"
+      pricePerUnit = parseFloat(item.price.replace("S$", ""));
+    } else {
+      // If price is number 5.50
+      pricePerUnit = item.price;
+    }
+    
+    // Get quantity
+    const quantity = item.qty || item.quantity || 1;
+    const rowTotal = pricePerUnit * quantity;
     grandTotal += rowTotal;
     
     // 3. Create the HTML for each row
-    // combinedName already includes the " + Extra Peanuts" from Menu.js
     html += `
       <li class="info-item d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
         <div class="item-info">
           <span class="info-label d-block fw-bold">${combinedName}</span>
-          <span class="info-value text-muted small">Stall: ${item.stall} | Qty: ${item.quantity}</span>
+          <span class="info-value text-muted small">Qty: ${quantity}</span>
         </div>
         <span class="info-value fw-bold">S$${rowTotal.toFixed(2)}</span>
       </li>
@@ -69,35 +82,31 @@ function placeOrder() {
     return;
   }
 
-    // 1. Simulate a payment processing delay (optional but realistic)
+  // 1. Simulate a payment processing delay
   console.log("Processing payment...");
 
   // 2. For demonstration: generate a random outcome
-  // Math.random() returns a value between 0 and 1
-  const isSuccessful = Math.random() > 0.5; // 50% chance of success
+  const isSuccessful = Math.random() > 0.5; 
 
   if (isSuccessful) {
-    // Redirect to the success page
-      window.location.href = 'payment-success.html';
+    window.location.href = 'payment-success.html';
   } else {
-    // Redirect to the failure page
-      window.location.href = 'payment-failure.html';
+    window.location.href = 'payment-failure.html';
   }
   
-  // Generate a random 4-digit order number
   const orderNum = Math.floor(1000 + Math.random() * 9000);
+
+  const orderNumberEl = document.getElementById("orderNumber");
+  if (orderNumberEl) {
+    orderNumberEl.textContent = "#" + orderNum;
+  }
   
-  // Display it on the page
-  document.getElementById("orderNumber").textContent = "#" + orderNum;
-  
-  // Final confirmation alert
   alert("Order Confirmed!\nYour Order Number is: #" + orderNum);
   
-  // Clear the cart after order is placed
   localStorage.removeItem("hawkersgoCart");
   
-  // Optional: Redirect to Stalls page after 3 seconds
   setTimeout(() => {
     window.location.href = "Stalls.html";
   }, 3000);
 }
+
