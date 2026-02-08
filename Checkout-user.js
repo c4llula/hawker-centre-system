@@ -74,7 +74,7 @@ function placeOrder() {
   console.log("Processing payment...");
 
   // for demonstration: generate a random outcome
-  const isSuccessful = Math.random() > 0.9; 
+  const isSuccessful = Math.random() > 0.1; 
 
   if (isSuccessful) {
     window.location.href = 'payment-success-user.html';
