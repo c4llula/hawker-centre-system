@@ -1,0 +1,10 @@
+.row a img {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.row a img:hover {
+    transform: scale(1.05);
+    /* Slight zoom in */
+    opacity: 0.8;
+    /* Slight fade */
+}

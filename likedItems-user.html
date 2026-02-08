@@ -80,7 +80,7 @@
         color: #5c6fa8;
         font-size: 14px;
       }
-      </style>
+    </style>
   </head>
 
   <body>
@@ -104,13 +104,13 @@
           <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="#">Home</a>
+                <a class="nav-link active" href="home-page-guest.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Order</a>
+                <a class="nav-link" href="hawker-centers.html">Order</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Feedback</a>
+                <a class="nav-link" href="customerEng-user.html">Customer Portal</a>
               </li>
               <li class="nav-item dropdown">
                 <a
@@ -128,25 +128,27 @@
                   aria-labelledby="moreDropdown"
                 >
                   <li>
-                    <a class="dropdown-item" href="CustomerEng.html"
-                      >Customer Engagement</a
+                    <a class="dropdown-item" href="LoyaltyDiscount.html"
+                      >Loyalty & Discount</a
                     >
                   </li>
                   <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item" href="#">Extra Option</a></li>
+                  <li>
+                    <a class="dropdown-item" href="orderTracking-user.html"
+                      >Order Tracking</a
+                    >
+                  </li>
                   <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item" href="#">More option</a></li>
+                  <li>
+                    <a class="dropdown-item" href="likedItems-user.html">Liked Items</a>
+                  </li>
                 </ul>
               </li>
             </ul>
 
             <div class="d-flex align-items-center">
-              <a
-                href="#"
-                class="btn btn-link text-white text-decoration-none me-3"
-                >Login</a
-              >
-              <a href="#" class="btn btn-light fw-bold">Sign Up</a>
+
+              <a href="main-login.html" class="btn btn-light fw-bold">Log Out</a>
             </div>
           </div>
         </div>
@@ -161,31 +163,31 @@
                 <!-- list group item applies display block to each <a>-->
 
                 <a
-                  href="customereng.html"
+                  href="customerEng-user.html"
                   class="list-group-item list-group-item-action bg-dark text-white fw-bold"
                 >
                   Customer Portal
                 </a>
                 <a
-                  href="loyaltydiscount.html"
+                  href="LoyaltyDiscount.html"
                   class="list-group-item list-group-item-action"
                 >
                   <i class="bi bi-gift me-2"></i> Loyalty & Discount
                 </a>
                 <a
-                  href="orderTracking.html"
+                  href="orderTracking-user.html"
                   class="list-group-item list-group-item-action"
                 >
                   <i class="bi bi-truck me-2"></i> Order Tracking
                 </a>
                 <a
-                  href="vendorsRating.html"
+                  href="vendorsRating-user.html"
                   class="list-group-item list-group-item-action"
                 >
                   <i class="bi bi-star me-2"></i> Vendor Ratings & Reviews
                 </a>
                 <a
-                  href="likedItems.html"
+                  href="likedItems-user.html"
                   class="list-group-item list-group-item-action"
                 >
                   <i class="bi bi-heart me-2"></i> Liked Items
@@ -196,16 +198,17 @@
         </div>
       </navigation>
       <!--start main code for each page here-->
-        <section class="liked-items">
-          <div class="liked-header">
-            <h2>Liked Items</h2>
-            <p class="count">Total: <span id="totalCount">0</span></p>
-          </div>
-          <div id="likedItemsList" class="items-list">
-            <p class="empty">No liked items yet. <a href="Stalls.html">Browse menu</a></p>
-          </div>
-        </section>
-
+      <section class="liked-items">
+        <div class="liked-header">
+          <h2>Liked Items</h2>
+          <p class="count">Total: <span id="totalCount">0</span></p>
+        </div>
+        <div id="likedItemsList" class="items-list">
+          <p class="empty">
+            No liked items yet. <a href="Stalls.html">Browse menu</a>
+          </p>
+        </div>
+      </section>
     </main>
     <!-- place footer here -->
     <footer class="bg-dark text-white py-4 mt-5">
@@ -268,6 +271,6 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
-    <script src = "Menu.js"></script>
+    <script src="Menu.js"></script>
   </body>
 </html>
