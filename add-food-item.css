@@ -1,203 +1,209 @@
 body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      background-color: #f5f5f5;
-    }
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background-color: #f5f5f5;
+  padding-top: 56px;
+}
 
 .sidebar {
-      width: 200px;
-      height: 100%;
-      background: linear-gradient(180deg, #69a2b0, #52ad9c);
-      padding: 20px 10px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-    }
+  width: 200px;
+  height: calc(100vh - 56px);
+  background: linear-gradient(180deg, #69a2b0, #52ad9c);
+  padding: 20px 10px;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+  z-index: 100;
+}
 
 .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
 .sidebar ul li {
-      padding: 10px;
-      color: #FFFFFF;
-      border-radius: 6px;
-      border-bottom: 1px solid #8fc8bd;
-      cursor: pointer;
-      text-align: center;
-      margin-bottom: 15px;
-      transition: background 0.5s, transform 0.3s;
-    }
+  padding: 10px;
+  color: #FFFFFF;
+  border-radius: 6px;
+  border-bottom: 1px solid #8fc8bd;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 15px;
+  transition: background 0.5s, transform 0.3s;
+}
 
 .sidebar ul li:hover {
-      background: rgba(255,255,255,0.25);
-      transform: translateX(3px) scale(1.03);
-    }
+  background: rgba(255,255,255,0.25);
+  transform: translateX(3px) scale(1.03);
+}
 
-    .content {
-      margin-left: 200px;
-      margin-bottom: 50px;
-      padding: 20px;
-    }
+.content {
+  margin-left: 200px;
+  margin-bottom: 50px;
+  padding: 20px;
+}
 
-    .top-bar {
-      text-align: right;
-      margin-bottom: 15px;
-    }
+.top-bar {
+  text-align: right;
+  margin-bottom: 15px;
+}
 
-    .top-bar button {
-      background: linear-gradient(135deg, #69a2b0, #52ad9c);
-      color: white;
-      margin-left: 5px;
-      padding: 12px 24px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      font-size: 15px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+.top-bar button {
+  background: linear-gradient(135deg, #69a2b0, #52ad9c);
+  color: white;
+  margin-left: 5px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
-    .top-bar button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0px 6px 12px rgba(0,0,0,0.3);
-    }
+.top-bar button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.3);
+}
 
-    p {
-        width: 700px;
-      font-size: 40px;
-      margin: 20px auto;
-      text-align: left;
-    }
+p {
+  width: 700px;
+  font-size: 40px;
+  margin: 20px auto;
+  text-align: left;
+}
 
-    .form {
-      background-color: white;
-      padding: 20px;
-      border: 1px solid lightgrey;
-      box-shadow: 1px 0px 10px lightgrey;
-      border-radius: 8px;
-      max-width: 650px;
-      margin: auto;
-    }
+.form {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid lightgrey;
+  box-shadow: 1px 0px 10px lightgrey;
+  border-radius: 8px;
+  max-width: 650px;
+  margin: auto;
+}
 
-    .form-group {
-      margin-top: 15px;
-    }
+.form-group {
+  margin-top: 15px;
+}
 
-    .label {
-      font-weight: bold;
-      margin-bottom: 5px;
-      display: block;
-    }
+.label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
 
-    .field {
-      padding: 10px;
-      border: 1px solid lightgrey;
-      border-radius: 5px;
-      background-color: #fafafa;
-      cursor: text;
-      transition: background 0.3s;
-    }
+.field {
+  padding: 10px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  background-color: #fafafa;
+  cursor: text;
+  transition: background 0.3s;
+}
 
-    .field:hover {
-      background-color: #f1f1f1;
-    }
+.field:hover {
+  background-color: #f1f1f1;
+}
 
-    .availability {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-    }
+.availability {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
 
-    .availability button {
-      flex: 1;
-      text-align: center;
-      padding: 15px;
-      border-radius: 25px;
-      border: 1px solid lightgrey;
-      cursor: pointer;
-      background-color: #fafafa;
-      transition: background 0.5s, transform 0.3s;
-    }
+.availability button {
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+  border-radius: 25px;
+  border: 1px solid lightgrey;
+  cursor: pointer;
+  background-color: #fafafa;
+  transition: background 0.5s, transform 0.3s;
+}
 
-    .availability button:hover {
-      background-color: #e0f2f1;
-      transform: scale(1.05);
-    }
+.availability button:hover {
+  background-color: #e0f2f1;
+  transform: scale(1.05);
+}
 
-    .availability button.selected {
-      background-color: #59a96a;
-      color: white;
-      border-color: #4a8c5a;
-    }
+.availability button.selected {
+  background-color: #59a96a;
+  color: white;
+  border-color: #4a8c5a;
+}
 
-    .dropdown button {
-      background-color: #fafafa;
-      border: 1px solid lightgrey;
-      padding: 10px 50px;
-      border-radius: 5px;
-      cursor: pointer;
-       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size: 15px;
-        font-weight: normal;
-        transition: background 0.3s;
-    }
+.dropdown button {
+  background-color: #fafafa;
+  border: 1px solid lightgrey;
+  padding: 10px 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  font-weight: normal;
+  transition: background 0.3s;
+}
 
-    .dropdown option {
-        display: block;
-        padding: 10px;
-        transition: background 0.3s;
-    }
+.dropdown option {
+  display: block;
+  padding: 10px;
+  transition: background 0.3s;
+}
 
-    .dropdown button:hover {
-      background-color: #e0e0e0;
-    }
+.dropdown button:hover {
+  background-color: #e0e0e0;
+}
 
-    .dropdown {
-      position: relative;
-    }
+.dropdown {
+  position: relative;
+}
 
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-        bottom: 100%;
-    }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  bottom: 100%;
+}
 
-    .dropdown option:hover {
-        background-color: #f1f1f1;
-    }
+.dropdown option:hover {
+  background-color: #f1f1f1;
+}
 
-    .form-buttons {
-      margin-top: 20px;
-      display: flex;
-      justify-content: space-between;
-    }
+.form-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
 
-    .form-buttons button {
-      padding: 12px 20px;
-      border: none;
-      border-radius: 5px;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
+.form-buttons button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
 
-    .discard {
-      background: linear-gradient(135deg, #b6174b, #c62828);
-    }
+.discard {
+  background: linear-gradient(135deg, #b6174b, #c62828);
+}
 
-    .add-item {
-      background: linear-gradient(135deg, #59a96a, #4a8c5a);
-    }
+.add-item {
+  background: linear-gradient(135deg, #59a96a, #4a8c5a);
+}
 
+.form-buttons button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
 
-    .form-buttons button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
+footer {
+  position: relative;
+  z-index: 200;
+}
