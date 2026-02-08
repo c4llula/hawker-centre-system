@@ -1,7 +1,7 @@
 const inspectionRecords = [
     {
         date: "2025-02-05",
-        vendor: "Hawker Stall #01 - Chicken Rice",
+        vendor: "Rojak, Popiah & Cockle",
         officer: "Sarah Tan",
         score: 92,
         grade: "A",
@@ -11,7 +11,7 @@ const inspectionRecords = [
     },
     {
         date: "2025-02-01",
-        vendor: "Hawker Stall #02 - Laksa",
+        vendor: "Tian Tian Hainanese Chicken Rice",
         officer: "John Lim",
         score: 78,
         grade: "B",
@@ -21,7 +21,7 @@ const inspectionRecords = [
     },
     {
         date: "2025-01-28",
-        vendor: "Hawker Stall #04 - Char Kway Teow",
+        vendor: "Zhen Zhen Porridge",
         officer: "Sarah Tan",
         score: 88,
         grade: "B",
@@ -31,7 +31,7 @@ const inspectionRecords = [
     },
     {
         date: "2025-01-25",
-        vendor: "Hawker Stall #03 - Nasi Lemak",
+        vendor: "Oriental Stall",
         officer: "John Lim",
         score: 65,
         grade: "C",
@@ -41,7 +41,7 @@ const inspectionRecords = [
     },
     {
         date: "2025-01-20",
-        vendor: "Hawker Stall #05 - Satay",
+        vendor: "Jin Hua Sliced Fish Bee Hoon",
         officer: "Sarah Tan",
         score: 95,
         grade: "A",
@@ -51,7 +51,7 @@ const inspectionRecords = [
     },
     {
         date: "2025-01-15",
-        vendor: "Hawker Stall #01 - Chicken Rice",
+        vendor: "1980 Penang Prawn Noodle",
         officer: "John Lim",
         score: 90,
         grade: "A",
@@ -64,21 +64,21 @@ const inspectionRecords = [
 // Upcoming inspections array
 let upcomingInspections = [
     {
-        vendor: "Hawker Stall #01 - Chicken Rice",
+        vendor: "Rojak, Popiah & Cockle",
         date: "2025-02-10",
         time: "10:00 AM",
         officer: "Sarah Tan",
         notes: ""
     },
     {
-        vendor: "Hawker Stall #03 - Nasi Lemak",
+        vendor: "Oriental Stall",
         date: "2025-02-12",
         time: "2:00 PM",
         officer: "John Lim",
         notes: ""
     },
     {
-        vendor: "Hawker Stall #05 - Satay",
+        vendor: "Jin Hua Sliced Fish Bee Hoon",
         date: "2025-02-15",
         time: "11:30 AM",
         officer: "Sarah Tan",
@@ -318,4 +318,3 @@ populateInspectionDropdown();
 // Set today's date as default for date inputs
 const today = new Date().toISOString().split('T')[0];
 document.getElementById("inspectionDate").setAttribute('min', today);
-
