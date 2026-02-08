@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #f8f9fa;
+    padding-top: 60px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #438f81;
+    margin-bottom: 30px;
+}
+
+.search-box {
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.search-input {
+    background: white;
+    border-radius: 8px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.search-input svg {
+    margin-right: 10px;
+}
+
+.search-input input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 1rem;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.hawker-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.hawker-card {
+    width: 280px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.hawker-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.hawker-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.hawker-info {
+    padding: 20px;
+}
+
+.hawker-info h3 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.location, .waiting {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
