@@ -72,6 +72,20 @@ h2 {
     margin: 0;
 }
 
+#back-btn {
+    border-radius: 8px;
+    background-color: lightgrey;
+    text-decoration: none;
+    color: black;
+    margin-left: 52px;
+    padding: 3px;
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#back-btn:hover {
+    color: #5998C5;
+}
+
 .split {
     background-color: #f5f5f5;
     padding: 30px;
