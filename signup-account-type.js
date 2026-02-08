@@ -28,11 +28,6 @@ function showForm(formType) {
             }
         });
         
-        // OPTIONAL: Clear vendor form when switching to it
-        // document.getElementById('vendor-name').value = '';
-        // document.getElementById('vendor-email').value = '';
-        // document.getElementById('vendor-phone').value = '';
-        // document.getElementById('vendor-password').value = '';
     }
 }
 
