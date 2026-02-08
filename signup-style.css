@@ -1,0 +1,166 @@
+/* 1. Global Setup */
+* {
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column; /* Stack Nav, Main, Footer */
+}
+
+/* 2. Main Wrapper - Match login page */
+main.container {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px 60px; /* Space for Navbar and Footer */
+    width: 100%;
+    max-width: 400px; /* Match login page width */
+    background: transparent;
+    box-shadow: none;
+}
+
+/* 3. Form Styles */
+.form {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 4. Header Styles - Inside form */
+.header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.header h1 {
+    color: #52ad9c; /* Match login page color */
+    font-size: 32px;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+.header p {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* 5. Account type navigation - Now inside form */
+.account-type {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.type-option {
+    flex: 1;
+    padding: 12px 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    font-weight: bold;
+    color: #555;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.type-option:hover {
+    border-color: #52ad9c;
+}
+
+.type-option.selected {
+    border-color: #52ad9c;
+    background-color: #f0f9f7;
+    color: #52ad9c;
+}
+
+/* 6. Input Styles - Left aligned */
+.form input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.form input:focus {
+    outline: none;
+    border-color: #52ad9c;
+}
+
+/* 7. Buttons */
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 5px;
+}
+
+.create-account-btn, .vendor-info-btn {
+    background-color: #52ad9c; /* Match login page color */
+    color: white;
+}
+
+.create-account-btn:hover, .vendor-info-btn:hover {
+    background-color: #438f81;
+}
+
+/* 8. Form Footer - Center aligned */
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.form-footer p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.form-footer a {
+    color: #52ad9c;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+/* 9. Form Visibility */
+.form {
+    display: none;
+}
+
+#customer-form {
+    display: flex; /* Changed from block to flex */
+}

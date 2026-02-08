@@ -1,0 +1,139 @@
+/* 1. Global Setup */
+* {
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column; /* Stack Nav, Main, Footer */
+}
+
+/* 2. Main Wrapper - Center the form */
+main.container {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px 60px; /* Space for Navbar and Footer */
+    width: 100%;
+}
+
+/* 3. The Login Form with Header Inside */
+.form {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 400px; /* Fixed width for the card */
+    display: flex;
+    flex-direction: column;
+}
+
+/* 4. Header Styles - Now inside the form */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    color: #52ad9c;
+    font-size: 32px;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+.header p {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* 5. Form Input Styles - Left Aligned */
+.form input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    text-align: left; /* Changed from center to left */
+    margin-top: 10px;
+    padding-left: 15px; /* Add padding to left for better appearance */
+}
+
+.form input:focus {
+    outline: none;
+    border-color: #52ad9c;
+}
+
+/* 6. Links and Buttons */
+
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;    
+}
+
+.login-btn {
+    background-color: #52ad9c;
+    color: white;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    background-color: #438f81;
+}
+
+/* 7. Form Footer - Center Aligned */
+.form-footer {
+    margin-top: 20px;
+    text-align: center; /* Center align everything in form footer */
+}
+
+.form-footer p:first-child {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+
+.form-footer a {
+    color: #52ad9c;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.guest-section {
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.guest-section p {
+    margin-bottom: 15px;
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+}
+
+.guest-login-btn {
+    background-color: #f0f0f0;
+    color: #555;
+}
+
+.guest-login-btn:hover {
+    background-color: #e0e0e0;
+}
+

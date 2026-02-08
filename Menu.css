@@ -1,4 +1,11 @@
 /* Menu.css */
+header {
+  text-align: center;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  color: black;
+}
+
 body {
   margin: 0;
   font-family: 'DM Sans', sans-serif;
@@ -35,12 +42,6 @@ body {
   box-shadow: 0 5px 15px lightgrey
 }
 
-header {
-  text-align: center;
-  padding: 20px 0;
-  margin-bottom: 30px;
-  color: black;
-}
 
 h1 {
   font-size: 32px;
