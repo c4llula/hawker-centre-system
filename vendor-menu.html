@@ -3,17 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <title>Vendor Management</title>
   <link rel="stylesheet" href="vendor-menu.css">
 </head>
 <body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        HawkersGo
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="main-login.html">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
   <div class="sidebar">
     <ul>
       <li>My Store</li>
       <li>Menu</li>
       <li>Orders</li>
-      <li>Reset Password</li>
       <li>Rental Agreement</li>
     </ul>
   </div>
@@ -22,143 +41,6 @@
     <div class="top-bar">
       <button id="addmenu">Add Menu</button>
       <button id="menulist">Menu List</button>
-    </div>
-
-    <div id="main-menu-view">
-      <p>Menu</p>
-      <table>
-        <thead>
-          <tr>
-            <th>Food Item</th>
-            <th>Cuisine</th>
-            <th>Price</th>
-            <th>Availability</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Burger</td>
-            <td>American</td>
-            <td>$5.00</td>
-            <td class="availability">Available</td>
-            <td>
-              <button class="action-btn edit">Edit</button>
-              <button class="action-btn delete">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Roti Prata</td>
-            <td>Indian (South Indian)</td>
-            <td>$4.00</td>
-            <td class="availability">Unavailable</td>
-            <td>
-              <button class="action-btn edit">Edit</button>
-              <button class="action-btn delete">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Chicken Rice</td>
-            <td>Chinese (Hainanese)</td>
-            <td>$3.30</td>
-            <td class="availability">Available</td>
-            <td>
-              <button class="action-btn edit">Edit</button>
-              <button class="action-btn delete">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Laksa</td>
-            <td>Peranakan (Chinese-Malay)</td>
-            <td>$6.50</td>
-            <td class="availability">Available</td>
-            <td>
-              <button class="action-btn edit">Edit</button>
-              <button class="action-btn delete">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Chark Kway Teow</td>
-            <td>Chinese</td>
-            <td>$4.20</td>
-            <td class="availability">Available</td>
-            <td>
-              <button class="action-btn edit">Edit</button>
-              <button class="action-btn delete">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Satay</td>
-            <td>Malay</td>
-            <td>$1.00/stick</td>
-            <td class="availability">Available</td>
-            <td>
-              <button class="action-btn edit">Edit</button>
-              <button class="action-btn delete">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Nasi Lemak</td>
-            <td>Malay</td>
-            <td>$3.50</td>
-            <td class="availability">Available</td>
-            <td>
-              <button class="action-btn edit">Edit</button>
-              <button class="action-btn delete">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Hokkien Mee</td>
-            <td>Chinese (Fujian)</td>
-            <td>$5.40</td>
-            <td class="availability">Unavailable</td>
-            <td>
-              <button class="action-btn edit">Edit</button>
-              <button class="action-btn delete">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Ayam Penyet</td>
-            <td>Indonesian</td>
-            <td>$5.30</td>
-            <td class="availability">Available</td>
-            <td>
-              <button class="action-btn edit">Edit</button>
-              <button class="action-btn delete">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Teh Tarik</td>
-            <td>Indian-Muslim/Local</td>
-            <td>$1.20</td>
-            <td class="availability">Available</td>
-            <td>
-              <button class="action-btn edit">Edit</button>
-              <button class="action-btn delete">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Bandung</td>
-            <td>Indonesian</td>
-            <td>$1.70</td>
-            <td class="availability">Available</td>
-            <td>
-              <button class="action-btn edit">Edit</button>
-              <button class="action-btn delete">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Mee Goreng</td>
-            <td>Indian-Muslim</td>
-            <td>$4.30</td>
-            <td class="availability">Available</td>
-            <td>
-              <button class="action-btn edit">Edit</button>
-              <button class="action-btn delete">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
 
     <div id="menu-list-view">
@@ -202,6 +84,46 @@
       </div>
     </div>
   </div>
+
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+          <a href="#" class="text-white text-decoration-none fw-bold">
+            HawkersGo
+          </a>
+        </div>
+
+        <div class="col-md-8 text-center text-md-end">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item me-3">
+              <a href="#" class="text-white-50 text-decoration-none">Privacy Policy</a>
+            </li>
+            <li class="list-inline-item me-4">
+              <a href="#" class="text-white-50 text-decoration-none">Terms</a>
+            </li>
+
+            <li class="list-inline-item">
+              <a href="#" class="text-white ms-2"><i class="bi bi-facebook"></i> FB</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-white ms-2"><i class="bi bi-instagram"></i> IG</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-white ms-2"><i class="bi bi-twitter"></i> X</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="mt-4 border-secondary" />
+      <div class="text-center text-white-50 small">
+        &copy; 2024 HawkersGo. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="vendor-menu.js"></script>
 </body>
 </html>

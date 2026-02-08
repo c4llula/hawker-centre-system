@@ -9,6 +9,37 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebarItems = document.querySelectorAll('.sidebar ul li');
     const topBarButtons = document.querySelectorAll('.top-bar button');
 
+    const sidebarPages = {
+      'My Store': 'vendor-dashboard.html',
+      'Menu': 'vendor-menu.html',
+      'Orders': 'vendor-orders.html',
+      'Rental Agreement': 'current-rentalagreement.html'
+    };
+
+    const topBarPages = {
+      'Rental Agreement': 'current-rentalagreement.html',
+      'Renew Rental': 'renew-rentalagreement.html',
+      'Rental History': 'rentalagreement-history.html'
+    };
+
+    sidebarItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const pageName = this.textContent.trim();
+        if (sidebarPages[pageName]) {
+          window.location.href = sidebarPages[pageName];
+        }
+      });
+    });
+
+    topBarButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const pageName = this.textContent.trim();
+        if (topBarPages[pageName]) {
+          window.location.href = topBarPages[pageName];
+        }
+      });
+    });
+
     function makeEditable(element, placeholder) {
         element.addEventListener('click', function() {
             if (element.textContent === placeholder || element.textContent.includes('Enter')) {
@@ -184,23 +215,6 @@ document.addEventListener('DOMContentLoaded', function() {
             endDateField.textContent = 'Enter rental end date...';
             rentalFeeField.textContent = 'Enter price...';
         }
-    });
-
-    sidebarItems.forEach(item => {
-        item.addEventListener('click', function() {
-            sidebarItems.forEach(i => i.style.backgroundColor = 'transparent');
-            item.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-            item.style.borderRadius = '5px';
-        });
-    });
-
-    topBarButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            topBarButtons.forEach(btn => {
-                btn.style.backgroundColor = '';
-            });
-            button.style.backgroundColor = '#5a7a8a';
-        });
     });
 
     fields.forEach(field => {

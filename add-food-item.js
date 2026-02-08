@@ -1,81 +1,35 @@
-const foodName = document.getElementById('foodName');
-const foodDescription = document.getElementById('foodDescription');
-const price = document.getElementById('price');
+const foodNameField = document.getElementById('foodName');
+const foodDescriptionField = document.getElementById('foodDescription');
+const priceField = document.getElementById('price');
 
-foodName.contentEditable = true;
-foodDescription.contentEditable = true;
-price.contentEditable = true;
+let selectedAvailability = 'Yes';
+let selectedCuisine = 'Cuisine selection';
 
-[foodName, foodDescription].forEach(field => {
-  field.addEventListener('focus', function() {
-    if (this.textContent.includes('Enter')) {
-      this.textContent = '';
-    }
-  });
-
-  field.addEventListener('blur', function() {
-    if (this.textContent.trim() === '') {
-      if (this.id === 'foodName') this.textContent = 'Enter food name...';
-      if (this.id === 'foodDescription') this.textContent = 'Enter food description...';
-    }
-  });
-});
-
-price.addEventListener('focus', function() {
-  if (this.textContent.includes('Enter')) {
-    this.textContent = '$';
-  }
-  if (!this.textContent.startsWith('$')) {
-    this.textContent = '$' + this.textContent;
+foodNameField.addEventListener('click', function() {
+  this.contentEditable = true;
+  this.focus();
+  if (this.textContent === 'Enter food name...') {
+    this.textContent = '';
   }
 });
 
-price.addEventListener('input', function() {
-  if (!this.textContent.startsWith('$')) {
-    this.textContent = '$' + this.textContent;
+foodDescriptionField.addEventListener('click', function() {
+  this.contentEditable = true;
+  this.focus();
+  if (this.textContent === 'Enter food description...') {
+    this.textContent = '';
   }
-  
-  let value = this.textContent.substring(1).replace(/[^\d.]/g, '');
-  
-  const parts = value.split('.');
-  if (parts.length > 2) {
-    value = parts[0] + '.' + parts.slice(1).join('');
-  }
-  
-  if (parts[1] && parts[1].length > 2) {
-    value = parts[0] + '.' + parts[1].substring(0, 2);
-  }
-  
-  this.textContent = '$' + value;
-  
-  if (value && parseFloat(value) > 0) {
-    this.classList.add('valid');
-    this.classList.remove('invalid');
-  } else if (value) {
-    this.classList.add('invalid');
-    this.classList.remove('valid');
-  } else {
-    this.classList.remove('valid', 'invalid');
-  }
-  
-  const range = document.createRange();
-  const sel = window.getSelection();
-  range.selectNodeContents(this);
-  range.collapse(false);
-  sel.removeAllRanges();
-  sel.addRange(range);
 });
 
-price.addEventListener('blur', function() {
-  if (this.textContent.trim() === '$' || this.textContent.trim() === '') {
-    this.textContent = 'Enter price...';
-    this.classList.remove('valid', 'invalid');
+priceField.addEventListener('click', function() {
+  this.contentEditable = true;
+  this.focus();
+  if (this.textContent === 'Enter price...') {
+    this.textContent = '';
   }
 });
 
 const availabilityButtons = document.querySelectorAll('.availability button');
-let selectedAvailability = null;
-
 availabilityButtons.forEach(button => {
   button.addEventListener('click', function() {
     availabilityButtons.forEach(btn => btn.classList.remove('selected'));
@@ -84,92 +38,88 @@ availabilityButtons.forEach(button => {
   });
 });
 
-const dropdownButton = document.querySelector('.dropdown button');
-const dropdownOptions = document.querySelectorAll('.dropdown-content option');
-const dropdownContent = document.querySelector('.dropdown-content');
-let selectedCuisine = null;
+const cuisineButton = document.querySelector('.dropdown button');
+const cuisineOptions = document.querySelectorAll('.dropdown-content option');
 
-dropdownButton.addEventListener('click', function(e) {
+cuisineButton.addEventListener('click', function(e) {
   e.stopPropagation();
-  if (dropdownContent.style.display === 'block') {
-    dropdownContent.style.display = 'none';
-  } else {
-    dropdownContent.style.display = 'block';
-  }
+  const dropdown = this.nextElementSibling;
+  dropdown.classList.toggle('show');
 });
 
-dropdownOptions.forEach(option => {
+cuisineOptions.forEach(option => {
   option.addEventListener('click', function() {
     selectedCuisine = this.textContent;
-    dropdownButton.textContent = selectedCuisine;
-    dropdownContent.style.display = 'none';
+    cuisineButton.textContent = selectedCuisine;
+    document.querySelector('.dropdown-content').classList.remove('show');
   });
 });
 
 document.addEventListener('click', function() {
-  dropdownContent.style.display = 'none';
+  document.querySelector('.dropdown-content').classList.remove('show');
 });
 
-const dropdown = document.querySelector('.dropdown');
-dropdown.addEventListener('click', function(e) {
-  e.stopPropagation();
+const sidebarItems = document.querySelectorAll('.sidebar ul li');
+
+const sidebarPages = {
+  'My Store': 'vendor-dashboard.html',
+  'Menu': 'vendor-menu.html',
+  'Orders': 'order-requests.html',
+  'Rental Agreement': 'current-rentalagreement.html'
+};
+
+sidebarItems.forEach(item => {
+  item.addEventListener('click', function() {
+    const pageName = this.textContent.trim();
+    if (sidebarPages[pageName]) {
+      window.location.href = sidebarPages[pageName];
+    }
+  });
 });
 
-const discardButton = document.querySelector('.discard');
-const addItemButton = document.querySelector('.add-item');
-
-discardButton.addEventListener('click', function() {
-  if (confirm('Are you sure you want to discard this item?')) {
-    foodName.textContent = 'Enter food name...';
-    foodDescription.textContent = 'Enter food description...';
-    price.textContent = 'Enter price...';
-    availabilityButtons.forEach(btn => btn.classList.remove('selected'));
-    dropdownButton.textContent = 'Cuisine selection';
-    selectedAvailability = null;
-    selectedCuisine = null;
-    price.classList.remove('valid', 'invalid');
+document.querySelector('.discard').addEventListener('click', function() {
+  if (confirm('Discard changes and go back to menu?')) {
+    window.location.href = 'vendor-menu.html';
   }
 });
 
-addItemButton.addEventListener('click', function() {
-  const name = foodName.textContent.includes('Enter') ? '' : foodName.textContent;
-  const description = foodDescription.textContent.includes('Enter') ? '' : foodDescription.textContent;
-  const priceValue = price.textContent.includes('Enter') ? '' : price.textContent.replace('$', '');
+document.querySelector('.add-item').addEventListener('click', function() {
+  const foodName = foodNameField.textContent.trim();
+  const foodDescription = foodDescriptionField.textContent.trim();
+  const price = priceField.textContent.trim();
 
-  if (!name || !description || !priceValue || !selectedAvailability || !selectedCuisine) {
-    alert('Please fill in all fields!');
+  if (foodName === '' || foodName === 'Enter food name...') {
+    alert('Please enter a food name');
+    return;
+  }
+  if (foodDescription === '' || foodDescription === 'Enter food description...') {
+    alert('Please enter a food description');
+    return;
+  }
+  if (price === '' || price === 'Enter price...') {
+    alert('Please enter a price');
+    return;
+  }
+  if (selectedCuisine === 'Cuisine selection') {
+    alert('Please select a cuisine');
     return;
   }
 
-  const menuItem = {
-    name: name,
-    description: description,
-    price: priceValue,
+  const foodItem = {
+    id: Date.now(),
+    name: foodName,
+    description: foodDescription,
+    price: price,
     availability: selectedAvailability,
     cuisine: selectedCuisine
   };
 
-  console.log('Menu Item Added:', menuItem);
-  alert('Item added successfully!');
+  let foodItems = JSON.parse(localStorage.getItem('foodItems')) || [];
+  
+  foodItems.push(foodItem);
+  
+  localStorage.setItem('foodItems', JSON.stringify(foodItems));
 
-  foodName.textContent = 'Enter food name...';
-  foodDescription.textContent = 'Enter food description...';
-  price.textContent = 'Enter price...';
-  availabilityButtons.forEach(btn => btn.classList.remove('selected'));
-  dropdownButton.textContent = 'Cuisine selection';
-  selectedAvailability = null;
-  selectedCuisine = null;
-  price.classList.remove('valid', 'invalid');
-});
-
-const sidebarItems = document.querySelectorAll('.sidebar ul li');
-sidebarItems.forEach(item => {
-  item.addEventListener('click', function() {
-    alert('Navigate to: ' + this.textContent);
-  });
-});
-
-const menuListButton = document.querySelector('.top-bar button');
-menuListButton.addEventListener('click', function() {
-  alert('Navigate to Menu List');
+  alert('Food item added successfully!');
+  window.location.href = 'vendor-menu.html';
 });
