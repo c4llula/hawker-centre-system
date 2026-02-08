@@ -51,6 +51,7 @@ function createAccount(type) {
         // Check if user already exists
         const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
         const userExists = existingUsers.some(u => u.email === customerData.email);
+        // Once it finds one matching item, it stops checking and returns true.
         
         if (userExists) {
             alert('User with this email already exists.');
@@ -86,6 +87,7 @@ function createAccount(type) {
         // Check if user already exists
         const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
         const userExists = existingUsers.some(u => u.email === vendorBasicInfo.email);
+        // Once it finds one matching item, it stops checking and returns true.
         
         if (userExists) {
             alert('User with this email already exists.');
