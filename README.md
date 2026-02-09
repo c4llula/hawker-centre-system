@@ -13,9 +13,6 @@ Built cart system for adding items and checkout flow.
 
 Integrated payment status display (using third-party payment handling).
 
-Order History
-
-Enabled guest order history via local storage.
 
 Tay Yi Sheng Nigel – Advanced Ordering & Order Data
 Ordering & Checkout
@@ -23,10 +20,6 @@ Ordering & Checkout
 Developed logic for handling separate orders per vendor.
 
 Added support for optional add-ons and extra charges.
-
-Order History
-
-Implemented registered user order history stored in Firebase.
 
 Customer Engagement
 
