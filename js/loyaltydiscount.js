@@ -1,32 +1,80 @@
-// 1. start with 5000 points for simulation
-let userPoints = 5000;
+let currentPoints = 0;
+let selectedItemName = "";
+let selectedItemCost = 0;
 
-// 2. This function runs the moment you click a Reward/Deal box
+const userDataString = localStorage.getItem("currentUser");
+const userData = userDataString ? JSON.parse(userDataString) : null;
+
+let customerId =
+  userData && userData.uid ? userData.uid : "C1k1qYywwIMGn3JAkvt3Ejynali2";
+
+async function fetchUserPoints() {
+  const pointsDisplay = document.getElementById("userPointsDisplay");
+
+  try {
+    const doc = await db.collection("customers").doc(customerId).get();
+
+    if (doc.exists) {
+      const data = doc.data();
+      currentPoints = data.Points !== undefined ? data.Points : 0;
+      pointsDisplay.innerHTML = `<i class="bi bi-coin"></i> ${currentPoints} pts`;
+    } else {
+      pointsDisplay.innerText = "0 pts";
+    }
+  } catch (error) {
+    console.error(error);
+    pointsDisplay.innerText = "Error Loading";
+  }
+}
+
 function setRedeemItem(name, cost) {
-  // We find the tags inside the modal and swap their text
+  selectedItemName = name;
+  selectedItemCost = cost;
+
   document.getElementById("itemName").innerText = name;
   document.getElementById("itemCost").innerText = cost;
 }
 
-// 3. This function runs when you click "Confirm & Redeem" inside the modal
-function confirmRedemption() {
-  // Get the cost from the modal (converted from text to a number)
-  const costText = document.getElementById("itemCost").innerText;
-  const cost = parseInt(costText);
-
-  // Check if it's a "Member Deal" (which usually has no point cost)
-  if (isNaN(cost)) {
-    alert("Success! This deal has been added to your account.");
+async function confirmRedemption() {
+  if (typeof selectedItemCost === "string") {
+    alert("Deal unlocked! Please show this to the vendor.");
     return;
   }
 
-  // Logic for Point Redemption
-  if (userPoints >= cost) {
-    userPoints -= cost; // Subtract points
+  if (currentPoints < selectedItemCost) {
     alert(
-      `Redemption Successful! \nItem: ${document.getElementById("itemName").innerText} \nRemaining Points: ${userPoints}`,
+      "Insufficient points! You need " +
+        (selectedItemCost - currentPoints) +
+        " more points.",
     );
-  } else {
-    alert("Insufficient Points! Try earning more by ordering food.");
+    return;
+  }
+
+  try {
+    const newPoints = currentPoints - selectedItemCost;
+
+    await db.collection("customers").doc(customerId).update({
+      points: newPoints,
+    });
+
+    alert(
+      `Successfully redeemed ${selectedItemName}! Your new balance is ${newPoints} pts.`,
+    );
+
+    currentPoints = newPoints;
+    document.getElementById("userPointsDisplay").innerHTML =
+      `<i class="bi bi-coin"></i> ${currentPoints} pts`;
+  } catch (error) {
+    console.error(error);
+    alert("Transaction failed. Please try again.");
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const checkFirebase = setInterval(() => {
+    if (typeof db !== "undefined") {
+      fetchUserPoints();
+      clearInterval(checkFirebase);
+    }
+  }, 100);
+});
