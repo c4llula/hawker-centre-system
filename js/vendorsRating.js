@@ -1,8 +1,3 @@
-/**
- * vendorsRating.js - FULLY SYNCED WITH FIRESTORE + AUTO-AVERAGE RATING
- */
-
-// 1. MAIN FUNCTION: Fetch Vendors and their Subcollection Reviews
 async function displayVendors() {
   const container = document.getElementById("vendor-container");
 
@@ -34,12 +29,12 @@ async function displayVendors() {
         .collection("Reviews")
         .get();
 
-      // --- START OF AUTO-AVERAGE LOGIC ---
+      // auto avg
       let totalRating = 0;
       const reviewsList = reviewsSnapshot.docs.map((doc) => {
         const rData = doc.data();
 
-        // Add this review's rating to our total (ensure it's a number)
+        // Add this review's rating to total
         totalRating += Number(rData.rating) || 0;
 
         return rData.comment || rData.text || rData.review || "No review text";
@@ -92,7 +87,7 @@ async function displayVendors() {
   }
 }
 
-// 2. CREATE FUNCTION: Submit a new review
+//  function: Submit a new review
 async function submitReview() {
   const vendorId = document.getElementById("reviewVendorName").value;
   const ratingNum = document.getElementById("ratingValue").value;
@@ -116,7 +111,7 @@ async function submitReview() {
       .collection("Reviews")
       .add({
         comment: commentText,
-        rating: Number(ratingNum), // This is crucial for the math to work!
+        rating: Number(ratingNum),
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
 
@@ -131,7 +126,6 @@ async function submitReview() {
   }
 }
 
-// 3. UI HELPERS
 function selectForReview(name) {
   document.getElementById("reviewVendorName").value = name;
   document
@@ -151,7 +145,6 @@ function setRating(n) {
   });
 }
 
-// 4. INITIALIZE
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     if (typeof db !== "undefined") {
