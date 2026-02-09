@@ -1,13 +1,15 @@
+// Wait for page to load
 document.addEventListener("DOMContentLoaded", function() {
   loadCart();
 });
 
+// Load cart from storage and show it
 function loadCart() {
   const cartItemsContainer = document.getElementById("cartItems");
   const totalAmountDisplay = document.getElementById("totalAmount");
   const cartData = localStorage.getItem("hawkersgoCart");
   
-  //  check if cart exists or is empty
+  // Check if cart is empty
   if (!cartData || cartData === "{}") {
     cartItemsContainer.innerHTML = '<li class="text-center p-4">Your cart is empty</li>';
     totalAmountDisplay.textContent = "S$0.00";
@@ -18,14 +20,11 @@ function loadCart() {
   let html = "";
   let grandTotal = 0;
   
-  console.log("Cart items:", items); // Debug
-  
-  // loop through cart items
+  // Loop through each item in cart
   for (let combinedName in items) {
     const item = items[combinedName];
     
-    console.log("Processing item:", combinedName, item); // Debug
-    
+    // Get price as number
     let pricePerUnit;
     if (typeof item.price === 'string') {
       pricePerUnit = parseFloat(item.price.replace("S$", ""));
@@ -33,12 +32,12 @@ function loadCart() {
       pricePerUnit = item.price;
     }
     
-    // get quantity
+    // Get quantity
     const quantity = item.qty || item.quantity || 1;
     const rowTotal = pricePerUnit * quantity;
     grandTotal += rowTotal;
     
-    // create the HTML for each row
+    // Create HTML for this item
     html += `
       <li class="info-item d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
         <div class="item-info">
@@ -50,18 +49,20 @@ function loadCart() {
     `;
   }
   
-  // updates the page
+  // Update page with cart items
   cartItemsContainer.innerHTML = html;
   totalAmountDisplay.textContent = "S$" + grandTotal.toFixed(2);
 }
 
+// Clear entire cart
 function clearCart() {
   if (confirm("Are you sure you want to remove all items from your cart?")) {
     localStorage.removeItem("hawkersgoCart");
-    loadCart(); // Refresh the list
+    loadCart();
   }
 }
 
+// Place order and checkout
 function placeOrder() {
   const cartData = localStorage.getItem("hawkersgoCart");
   
@@ -70,10 +71,7 @@ function placeOrder() {
     return;
   }
 
-  // simulate a payment processing delay
-  console.log("Processing payment...");
-
-  // for demonstration: generate a random outcome
+  // Random payment success (90% chance)
   const isSuccessful = Math.random() > 0.1; 
 
   if (isSuccessful) {
@@ -82,8 +80,10 @@ function placeOrder() {
     window.location.href = 'payment-failure-user.html';
   }
   
+  // Generate order number
   const orderNum = Math.floor(1000 + Math.random() * 9000);
 
+  // Show order number
   const orderNumberEl = document.getElementById("orderNumber");
   if (orderNumberEl) {
     orderNumberEl.textContent = "#" + orderNum;
@@ -91,10 +91,10 @@ function placeOrder() {
   
   alert("Order Confirmed!\nYour Order Number is: #" + orderNum);
   
+  // Clear cart and redirect
   localStorage.removeItem("hawkersgoCart");
   
   setTimeout(() => {
     window.location.href = "Stalls-user.html";
   }, 3000);
 }
-
