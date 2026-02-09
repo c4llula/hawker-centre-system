@@ -30,7 +30,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="main-login.html">Logout</a>
+            <a class="nav-link" href="/pages/main-login.html">Logout</a>
           </li>
         </ul>
       </div>
@@ -39,7 +39,7 @@
   <br><br><br><br><br>
 
     <h2>Stall Overview</h2>
-    <a href="vendor-menu.html" id="back-btn">← Back</a>
+    <a href="/pages/vendor-menu.html" id="back-btn">← Back</a>
     <section class="card">
         <div class="filter-controls">
             <div class="field">
@@ -54,7 +54,7 @@
         <div class="split">
             <div class="chart">
                 <header>
-                    <h3 id="salesChartTitle">Sales by Day</h3>
+                    <h3 id="salesChartTitle">Sales by hour (Today)</h3>
                 </header>
                 <div id="graph">
                     <canvas id="salesChart" aria-label="Sales chart"></canvas>
@@ -189,6 +189,8 @@
     </div>
   </footer>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
 <script src="/js/vendor-dashboard.js"></script>
 </body>
 </html>

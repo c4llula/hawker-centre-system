@@ -9,6 +9,12 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="stylesheet" href="../../../css/loyaltydiscount.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link
@@ -26,7 +32,10 @@
   <body>
     <header>
       <!-- place navbar here -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav
+        class="navbar navbar-expand-lg navbar-dark fixed-top"
+        style="background: #305652; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2)"
+      >
         <div class="container">
           <a class="navbar-brand" href="#">
             <span class="ms-2">HawkerGo</span>
@@ -91,7 +100,9 @@
             </ul>
 
             <div class="d-flex align-items-center">
-              <a href="main-login.html" class="btn btn-light fw-bold"
+              <a
+                href="/pages/Login and Signup/main-login.html"
+                class="btn btn-light fw-bold"
                 >Log Out</a
               >
             </div>
@@ -102,6 +113,7 @@
     <main>
       <div>
         <div class="container mt-5">
+          <br />
           <div class="row">
             <div class="col-md-3 mb-4">
               <div class="list-group shadow-sm">
@@ -167,7 +179,14 @@
                 </div>
 
                 <div class="col-lg-8">
-                  <h5 class="fw-bold mb-3">Rewards</h5>
+                  <h5 class="fw-bold mb-3">
+                    Rewards
+                    <span
+                      id="userPointsDisplay"
+                      class="badge bg-warning text-dark ms-2"
+                      >Loading Points...</span
+                    >
+                  </h5>
                   <!-- Makes a scroll wheel -->
                   <div class="reward-scroll-track mb-5">
                     <div
@@ -309,7 +328,10 @@
       </div>
     </div>
     <!-- place footer here -->
-    <footer class="bg-dark text-white py-4 mt-5">
+    <footer
+      class="text-white py-4 mt-5"
+      style="background: #305652; box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2)"
+    >
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
@@ -372,6 +394,6 @@
     <script src="../../../js/loyaltydiscount.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script src="firebase-init.js"></script>
+    <script src="/js/firebase-init.js"></script>
   </body>
 </html>

@@ -1,3 +1,23 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyBsn3nzbTWFP0f2k7XTmFsRxdAjd0vhDKA",
+  authDomain: "fed-assignment-33cc7.firebaseapp.com",
+  databaseURL: "https://fed-assignment-33cc7-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "fed-assignment-33cc7",
+  storageBucket: "fed-assignment-33cc7.firebasestorage.app",
+  messagingSenderId: "6435796920",
+  appId: "1:6435796920:web:5f521b0e023e8882a7014d",
+};
+
+if (typeof firebase === "undefined") {
+  alert("Firebase scripts not loaded. Check your HTML script order.");
+  throw new Error("firebase is undefined");
+}
+
+if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+window.db = db;
+console.log("✅ Firebase + Firestore ready");
 
 const chartData = {
   byDay: {
@@ -54,11 +74,11 @@ viewSelect.addEventListener("change", () => {
 });
 
 const data = [
-  { img: "Menu Images/Rojak.jpg", text: "Rojak" },
-  { img: "Menu Images/Cockle Laksa.jpg", text: "Laksa" },
-  { img: "Menu Images/Popiah.jpeg", text: "Popiah" },
-  { img: "Menu Images/Chicken Satay Sticks.jpg", text: "Chicken Satay" },
-  { img: "Menu Images/Tau Pok.jpg", text: "Tau Pok" }
+  { img: "/imgs/Rojak.jpg", text: "Rojak" },
+  { img: "/imgs/Cockle Laksa.jpg", text: "Laksa" },
+  { img: "/imgs/Popiah.jpeg", text: "Popiah" },
+  { img: "/imgs/Chicken Satay Sticks.jpg", text: "Chicken Satay" },
+  { img: "/imgs/Tau Pok.jpg", text: "Tau Pok" }
 ];
 
 const container = document.getElementById("popularItems");
@@ -75,136 +95,182 @@ data.forEach(item => {
   container.appendChild(card);
 });
 
-const inspections = [
-  {
-    date: "2025-01-15",
-    inspector: "NEA",
-    score: 92,
-    grade: "A"
-  },
-  {
-    date: "2024-09-10",
-    inspector: "NEA",
-    score: 78,
-    grade: "B"
-  },
-  {
-    date: "2024-05-03",
-    inspector: "NEA",
-    score: 55,
-    grade: "C"
+function getVendorId() {
+  // Option A: from URL like vendor-dashboard.html?vendorId=1980%20Penang%20Prawn%20Noodle
+  const params = new URLSearchParams(window.location.search);
+  const fromUrl = params.get("vendorId");
+  if (fromUrl) return fromUrl;
+
+  // Option B: from localStorage if you stored it at login/menu click
+  const fromStorage = localStorage.getItem("vendorId");
+  if (fromStorage) return fromStorage;
+
+  // Fallback: use your Firestore doc id (from your screenshot)
+  return "1980 Penang Prawn Noodle";
+}
+
+function formatStars(rating) {
+  const r = Math.round(rating); // nearest whole star
+  return "★".repeat(r) + "☆".repeat(5 - r);
+}
+
+function isInLast30Days(dateObj) {
+  const now = new Date();
+  const cutoff = new Date(now);
+  cutoff.setDate(cutoff.getDate() - 30);
+  return dateObj >= cutoff;
+}
+
+// Simple complaint categorizer from comment text.
+// You can expand these keywords anytime.
+function categorizeComplaint(comment) {
+  const text = (comment || "").toLowerCase();
+
+  const rules = [
+    { category: "Food Quality", keywords: ["cold", "raw", "stale", "salty", "bland", "taste", "spoilt"] },
+    { category: "Service Speed", keywords: ["slow", "wait", "waiting", "late", "delay", "long"] },
+    { category: "Portion Size", keywords: ["small", "little", "portion", "less", "tiny"] },
+    { category: "Cleanliness", keywords: ["dirty", "unclean", "hygiene", "clean", "cockroach", "smell"] },
+  ];
+
+  for (const rule of rules) {
+    if (rule.keywords.some(k => text.includes(k))) return rule.category;
   }
-];
+  return "Other";
+}
 
-const inspectionTable = document.getElementById("inspectionHistory");
+/***********************
+ * LOAD CUSTOMER SATISFACTION FROM FIRESTORE
+ ***********************/
+async function loadCustomerSatisfaction() {
+  const vendorId = getVendorId();
 
-inspections.forEach(item => {
-  const row = document.createElement("tr");
+  // 1) Read all reviews for this vendor
+  // If your "timestamp" is a Firestore Timestamp field (as in your screenshot), ordering works.
+  const reviewsRef = db.collection("vendors").doc(vendorId).collection("Reviews");
+  const snap = await reviewsRef.orderBy("timestamp", "desc").get();
 
-  row.innerHTML = `
-    <td>${item.date}</td>
-    <td>${item.inspector}</td>
-    <td>${item.score}</td>
-    <td>
-      ${item.grade}
-    </td>
-  `;
+  const reviews = [];
+  snap.forEach(doc => {
+    const d = doc.data();
+    const ts = d.timestamp && d.timestamp.toDate ? d.timestamp.toDate() : null;
 
-  inspectionTable.appendChild(row);
-});
+    reviews.push({
+      rating: Number(d.rating ?? 0),
+      comment: d.comment ?? "",
+      date: ts, // JS Date object (or null)
+    });
+  });
 
-const reviews = [
-  {
-    rating: 5,
-    date: "2025-02-05",
-    text: "Amazing food! The chicken rice was delicious and service was fast. Definitely coming back!",
-    sentiment: "positive"
-  },
-  {
-    rating: 4,
-    date: "2025-02-04",
-    text: "Good quality food, though the wait time was a bit long during lunch hour.",
-    sentiment: "neutral"
-  },
-  {
-    rating: 2,
-    date: "2025-02-03",
-    text: "Food was cold when it arrived and portion size was smaller than expected.",
-    sentiment: "negative"
-  },
-  {
-    rating: 5,
-    date: "2025-02-02",
-    text: "Best laksa in the area! Love the rich broth and generous toppings.",
-    sentiment: "positive"
-  },
-  {
-    rating: 3,
-    date: "2025-02-01",
-    text: "Food is okay but nothing special. Price is reasonable though.",
-    sentiment: "neutral"
+  // If there are no reviews, clear UI nicely
+  if (reviews.length === 0) {
+    document.getElementById("overallRating").textContent = "0.0";
+    document.getElementById("overallStars").textContent = "☆☆☆☆☆";
+    document.getElementById("totalReviews").textContent = "0";
+    document.getElementById("totalComplaints").textContent = "0";
+    document.getElementById("reviewsList").innerHTML = "<div class='muted'>No reviews yet.</div>";
+    document.getElementById("complaintsGrid").innerHTML = "<div class='muted'>No complaint data yet.</div>";
+    return;
   }
-];
 
-const reviewsList = document.getElementById("reviewsList");
+  // 2) Overall rating (all-time average)
+  const sum = reviews.reduce((acc, r) => acc + (r.rating || 0), 0);
+  const avg = sum / reviews.length;
 
-reviews.forEach(review => {
-  const stars = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
-  
-  const reviewCard = document.createElement("div");
-  reviewCard.className = "review-card";
-  
-  reviewCard.innerHTML = `
-    <div class="review-header">
-      <span class="review-rating">${stars}</span>
-      <span class="review-date">${review.date}</span>
-    </div>
-    <div class="review-text">${review.text}</div>
-    <span class="review-sentiment sentiment-${review.sentiment}">
-      ${review.sentiment.charAt(0).toUpperCase() + review.sentiment.slice(1)}
-    </span>
-  `;
-  
-  reviewsList.appendChild(reviewCard);
-});
+  document.getElementById("overallRating").textContent = avg.toFixed(1);
+  document.getElementById("overallStars").textContent = formatStars(avg);
 
-const complaintCategories = [
-  {
-    category: "Food Quality",
-    count: 12,
-    percentage: 43
-  },
-  {
-    category: "Service Speed",
-    count: 8,
-    percentage: 29
-  },
-  {
-    category: "Portion Size",
-    count: 5,
-    percentage: 18
-  },
-  {
-    category: "Cleanliness",
-    count: 3,
-    percentage: 11
+  // 3) Total reviews "this month" (using last 30 days)
+  const reviewsLast30 = reviews.filter(r => r.date && isInLast30Days(r.date));
+  document.getElementById("totalReviews").textContent = String(reviewsLast30.length);
+
+  // 4) Complaints (rule: rating <= 2) in last 30 days
+  const complaintsLast30 = reviewsLast30.filter(r => (r.rating || 0) <= 2);
+  document.getElementById("totalComplaints").textContent = String(complaintsLast30.length);
+
+  // Optional: update the subtext "x% of orders" if you don't have orders count.
+  // If you DO have orders count somewhere, tell me and I’ll wire it properly.
+  // For now we’ll show % of reviews.
+  const complaintRate = reviewsLast30.length > 0
+    ? (complaintsLast30.length / reviewsLast30.length) * 100
+    : 0;
+
+  const complaintSubtextEl = document.querySelector("#totalComplaints + .stat-subtext");
+  if (complaintSubtextEl) {
+    complaintSubtextEl.textContent = `${complaintRate.toFixed(1)}% of reviews (last 30 days)`;
   }
-];
 
-const complaintsGrid = document.getElementById("complaintsGrid");
+  // 5) Recent reviews list (latest 5)
+  const recent = reviews.slice(0, 5);
+  const reviewsList = document.getElementById("reviewsList");
+  reviewsList.innerHTML = "";
 
-complaintCategories.forEach(complaint => {
-  const categoryCard = document.createElement("div");
-  categoryCard.className = "complaint-category";
-  
-  categoryCard.innerHTML = `
-    <h5>${complaint.category}</h5>
-    <div class="complaint-count">${complaint.count}</div>
-    <div class="complaint-bar">
-      <div class="complaint-fill" style="width: ${complaint.percentage}%"></div>
-    </div>
-    <div class="stat-subtext">${complaint.percentage}% of complaints</div>
-  `;
-  
-  complaintsGrid.appendChild(categoryCard);
-});
+  recent.forEach(r => {
+    const dateStr = r.date
+      ? r.date.toISOString().slice(0, 10)
+      : "";
+
+    const stars = "★".repeat(r.rating) + "☆".repeat(5 - r.rating);
+
+    // sentiment from rating (simple rule)
+    const sentiment =
+      r.rating >= 4 ? "positive" :
+      r.rating === 3 ? "neutral" : "negative";
+
+    const reviewCard = document.createElement("div");
+    reviewCard.className = "review-card";
+    reviewCard.innerHTML = `
+      <div class="review-header">
+        <span class="review-rating">${stars}</span>
+        <span class="review-date">${dateStr}</span>
+      </div>
+      <div class="review-text">${r.comment || ""}</div>
+      <span class="review-sentiment sentiment-${sentiment}">
+        ${sentiment.charAt(0).toUpperCase() + sentiment.slice(1)}
+      </span>
+    `;
+    reviewsList.appendChild(reviewCard);
+  });
+
+  // 6) Complaint categories grid (from complaint comments in last 30 days)
+  const counts = {};
+  complaintsLast30.forEach(r => {
+    const cat = categorizeComplaint(r.comment);
+    counts[cat] = (counts[cat] || 0) + 1;
+  });
+
+  const totalComplaintCount = complaintsLast30.length || 1; // avoid div by 0
+  const complaintCategories = Object.entries(counts)
+    .map(([category, count]) => ({
+      category,
+      count,
+      percentage: Math.round((count / totalComplaintCount) * 100),
+    }))
+    .sort((a, b) => b.count - a.count);
+
+  const complaintsGrid = document.getElementById("complaintsGrid");
+  complaintsGrid.innerHTML = "";
+
+  if (complaintCategories.length === 0) {
+    complaintsGrid.innerHTML = "<div class='muted'>No complaints in the last 30 days.</div>";
+  } else {
+    complaintCategories.forEach(c => {
+      const card = document.createElement("div");
+      card.className = "complaint-category";
+      card.innerHTML = `
+        <h5>${c.category}</h5>
+        <div class="complaint-count">${c.count}</div>
+        <div class="complaint-bar">
+          <div class="complaint-fill" style="width: ${c.percentage}%"></div>
+        </div>
+        <div class="stat-subtext">${c.percentage}% of complaints</div>
+      `;
+      complaintsGrid.appendChild(card);
+    });
+  }
+}
+
+// Run after page loads
+window.addEventListener("DOMContentLoaded", () => {
+  loadCustomerSatisfaction().catch(err => console.error("Customer satisfaction load failed:", err));
+})
