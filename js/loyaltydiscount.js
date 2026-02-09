@@ -1,30 +1,32 @@
-// Global variables to track state
 let currentPoints = 0;
 let selectedItemName = "";
 let selectedItemCost = 0;
-let customerId =
-  localStorage.getItem("loggedInCustomerId") || "C1k1qYywwIMGn3JAkvt3Ejynali2";
 
-// 1. Fetch Points on Page Load
+const userDataString = localStorage.getItem("currentUser");
+const userData = userDataString ? JSON.parse(userDataString) : null;
+
+let customerId =
+  userData && userData.uid ? userData.uid : "C1k1qYywwIMGn3JAkvt3Ejynali2";
+
 async function fetchUserPoints() {
   const pointsDisplay = document.getElementById("userPointsDisplay");
 
   try {
     const doc = await db.collection("customers").doc(customerId).get();
+
     if (doc.exists) {
-      currentPoints = doc.data().Points || 0; // Matches 'Points' field in Firebase
-      pointsDisplay.innerText = `${currentPoints} pts`;
+      const data = doc.data();
+      currentPoints = data.Points !== undefined ? data.Points : 0;
+      pointsDisplay.innerHTML = `<i class="bi bi-coin"></i> ${currentPoints} pts`;
     } else {
-      pointsDisplay.innerText = "Points: N/A";
-      console.error("No such customer document!");
+      pointsDisplay.innerText = "0 pts";
     }
   } catch (error) {
-    console.error("Error fetching points:", error);
-    pointsDisplay.innerText = "Error";
+    console.error(error);
+    pointsDisplay.innerText = "Error Loading";
   }
 }
 
-// 2. Prepare the Modal (Triggered by onclick in HTML)
 function setRedeemItem(name, cost) {
   selectedItemName = name;
   selectedItemCost = cost;
@@ -33,45 +35,46 @@ function setRedeemItem(name, cost) {
   document.getElementById("itemCost").innerText = cost;
 }
 
-// 3. Update Firebase after confirmation
 async function confirmRedemption() {
-  // Check if it's an exclusive deal (no cost) or if points are enough
   if (typeof selectedItemCost === "string") {
-    alert("Deal unlocked! Show this screen to the vendor.");
+    alert("Deal unlocked! Please show this to the vendor.");
     return;
   }
 
   if (currentPoints < selectedItemCost) {
-    alert("Insufficient points! Keep ordering to earn more.");
+    alert(
+      "Insufficient points! You need " +
+        (selectedItemCost - currentPoints) +
+        " more points.",
+    );
     return;
   }
 
   try {
     const newPoints = currentPoints - selectedItemCost;
 
-    // Update the points in Firestore
     await db.collection("customers").doc(customerId).update({
-      Points: newPoints,
+      points: newPoints,
     });
 
-    alert(`Successfully redeemed ${selectedItemName}!`);
+    alert(
+      `Successfully redeemed ${selectedItemName}! Your new balance is ${newPoints} pts.`,
+    );
 
-    // Refresh local points and UI
     currentPoints = newPoints;
-    document.getElementById("userPointsDisplay").innerText =
-      `${currentPoints} pts`;
+    document.getElementById("userPointsDisplay").innerHTML =
+      `<i class="bi bi-coin"></i> ${currentPoints} pts`;
   } catch (error) {
-    console.error("Redemption Error:", error);
-    alert("Redemption failed. Please try again later.");
+    console.error(error);
+    alert("Transaction failed. Please try again.");
   }
 }
 
-// Initialize
 document.addEventListener("DOMContentLoaded", () => {
-  // Wait for firebase-init.js to load the 'db' object
-  setTimeout(() => {
+  const checkFirebase = setInterval(() => {
     if (typeof db !== "undefined") {
       fetchUserPoints();
+      clearInterval(checkFirebase);
     }
-  }, 500);
+  }, 100);
 });
