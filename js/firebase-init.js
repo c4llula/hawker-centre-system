@@ -11,7 +11,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-// Create the 'db' variable so all your other JS files can use it
+// Create the 'db' variable so all other JS files can use it
 const db = firebase.firestore();
 
 console.log("Firebase is connected and ready!");
