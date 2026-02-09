@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <title>Completed Orders</title>
+  <link rel="stylesheet" href="/css/completed-orders.css">
+</head>
+<body>
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        HawkersGo
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="main-login.html">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="sidebar">
+    <ul>
+      <li>My Store</li>
+      <li>Menu</li>
+      <li>Orders</li>
+      <li>Rental Agreement</li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <div class="top-bar">
+      <button>Order Requests</button>
+      <button>Current Requests</button>
+      <button>Orders Completed</button>
+    </div>
+    <p>
+        Orders Completed
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th id=""action">Action</th>
+          <th>Order Id</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Customer Name</th>
+          <th>Food Items</th>
+          <th>Quantity</th>
+          <th>Grand Total ($)</th>
+          <th>Payment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class = "completed">Completed</td>
+          <td>OARLK23</td>
+          <td>12/27/2025</td>
+          <td>18:07PM</td>
+          <td>Leris Kuwan</td>
+          <td>Pasta<br>Iced Lemon Tea
+          </td>
+          <td>1<br>1
+          </td>
+          <td>$7.50</td>
+          <td>Online</td>
+        </tr>
+        <tr>
+          <td class = "completed">Completed</td>
+          <td>OARKH14</td>
+          <td>12/27/2025</td>
+          <td>18:10PM</td>
+          <td>Callula Febriajie</td>
+          <td>Fries<br>Milo
+          </td>
+          <td>1<br>2
+          </td>
+          <td>$8.00</td>
+            <td>PayNow</td>
+        </tr>
+        <tr>
+          <td class = "completed">Completed</td>
+          <td>OARYL07</td>
+          <td>12/27/2025</td>
+          <td>18:10PM</td>
+          <td>Lee Yan Lin</td>
+          <td>Salad
+          </td>
+          <td>1
+          </td>
+          <td>$5.60</td>
+          <td>PayNow</td>
+        </tr>
+        <tr class = "cancelled-order">
+          <td class = "cancelled">Cancelled</td>
+          <td>OARML27</td>
+          <td>12/27/2025</td>
+          <td>18:11PM</td>
+          <td>Tan MingLi</td>
+          <td>Steak
+          </td>
+          <td>1
+          </td>
+          <td>$11.00</td>
+          <td>Cash</td>
+        </tr>
+      </tbody>
+        <tr class = "cancelled-order">
+          <td class = "cancelled">Cancelled</td>
+          <td>OARLB23</td>
+          <td>12/27/2025</td>
+          <td>18:12PM</td>
+          <td>Louis Ng</td>
+          <td>Spaghetti
+          </td>
+          <td>2
+          </td>
+          <td>$10.20</td>
+          <td>Cash</td>
+        </tr>
+        <tr>
+          <td class = "completed">Completed</td>
+          <td>OARRT25</td>
+          <td>12/27/2025</td>
+          <td>18:13PM</td>
+          <td>Rayne Tok</td>
+          <td>Burger<br>Apple Juice
+          </td>
+          <td>2<br>1
+          </td>
+          <td>$9.70</td>
+          <td>PayNow</td>
+        </tr>
+        <tr>
+          <td class = "completed">Completed</td>
+          <td>OARRC30</td>
+          <td>12/27/2025</td>
+          <td>18:15PM</td>
+          <td>Reanne Chan</td>
+          <td>McWings
+          </td>
+          <td>2
+          </td>
+          <td>$5.60</td>
+          <td>Online</td>
+        </tr>
+        <tr class = "cancelled-order">
+          <td class = "cancelled">Cancelled</td>
+          <td>OARWU76</td>
+          <td>12/27/2025</td>
+          <td>18:20PM</td>
+          <td>Cheyenne Tan</td>
+          <td>Chicken Nuggets
+          </td>
+          <td>7
+          </td>
+          <td>$6.30</td>
+          <td>Online</td>
+        </tr>
+    </table>
+  </div>
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+          <a href="#" class="text-white text-decoration-none fw-bold">
+            HawkersGo
+          </a>
+        </div>
+
+        <div class="col-md-8 text-center text-md-end">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item me-3">
+              <a href="#" class="text-white-50 text-decoration-none">Privacy Policy</a>
+            </li>
+            <li class="list-inline-item me-4">
+              <a href="#" class="text-white-50 text-decoration-none">Terms</a>
+            </li>
+
+            <li class="list-inline-item">
+              <a href="#" class="text-white ms-2"><i class="bi bi-facebook"></i> FB</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-white ms-2"><i class="bi bi-instagram"></i> IG</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-white ms-2"><i class="bi bi-twitter"></i> X</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="mt-4 border-secondary" />
+      <div class="text-center text-white-50 small">
+        &copy; 2024 HawkersGo. All rights reserved.
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/completed-orders.js"></script>
+</body>
+</html>

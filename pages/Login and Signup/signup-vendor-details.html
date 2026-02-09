@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodApp - Store Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/vendor-style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">HawkersGo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <form class="form">
+
+            <header class="header">
+                <h1>HawkersGo</h1>
+                <p>Enter Store Details</p>
+            </header>
+
+            <div class="form-options">
+                <input type="text" placeholder="Store Number" required>
+            </div>
+
+            <div class="form-options">
+                <input type="text" placeholder="Hawker Centre Name" required>
+            </div>
+
+            <div class="form-options">
+                <input type="text" placeholder="Street Address" required>
+            </div>
+
+            <div class="form-options">
+                <input type="text" placeholder="Postal Code" required>
+            </div>
+
+            <button type="button" class="btn save-btn" onclick="saveStoreDetails()">
+                Save
+            </button>
+
+            <footer class="form-footer">
+                <p><a href="signup-account-type.html">← Back to account setup</a></p>
+            </footer>
+        </form>
+    </main>
+
+    <footer class="bg-dark text-white py-4 mt-auto">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                    <span class="fw-bold">HawkersGo</span>
+                </div>
+                <div class="col-md-8 text-center text-md-end">
+                    <ul class="list-inline mb-0 small">
+                        <li class="list-inline-item me-3"><a href="#" class="text-white-50 text-decoration-none">Privacy
+                                Policy</a></li>
+                        <li class="list-inline-item me-3"><a href="#"
+                                class="text-white-50 text-decoration-none">Terms</a></li>
+                        <li class="list-inline-item"><a href="#" class="text-white ms-2"><i
+                                    class="bi bi-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="text-white ms-2"><i
+                                    class="bi bi-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 border-secondary" />
+            <div class="text-center text-white-50 small">
+                &copy; 2024 HawkersGo. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="/js/signup-vendor-details.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>
