@@ -44,28 +44,28 @@ document.addEventListener("DOMContentLoaded", async function() {
                 const clone = template.content.cloneNode(true);
                 clone.querySelector('h3').textContent = itemName;
                 clone.querySelector('.description').textContent = item.Description || "";
-                clone.querySelector('.price').textContent = `$${parseFloat(item.Price || 0).toFixed(2)}`;
+                
+                const priceValue = parseFloat(item.Price || 0);
+                clone.querySelector('.price').textContent = `$${priceValue.toFixed(2)}`;
                 clone.querySelector('img').src = foodImageMap[itemName] || "/imgs/placeholder-food.jpg";
 
                 const addonContainer = clone.querySelector('.simple-addons');
                 
                 // --- CLASSIFICATION ---
                 const isDrink = ["milo", "sugarcane", "teh", "juice"].some(d => lowerName.includes(d));
-                
-                // It's a "Classic" if it's Laksa/Rojak/Popiah OR if it's Rice (but NOT "Extra Rice")
                 const isMain = ["laksa", "rojak", "popiah"].some(m => lowerName.includes(m)) || 
                                (lowerName.includes("rice") && !lowerName.includes("extra"));
 
-                // --- FIREBASE ADD-ONS (Works for both stores now) ---
+                // --- FIREBASE ADD-ONS ---
                 if (isMain) {
-                    // Check if Firebase has an 'Addons' array for this specific document
                     if (item.Addons && Array.isArray(item.Addons) && item.Addons.length >= 2) {
                         addonContainer.style.display = "block";
-                        addonContainer.innerHTML = ""; // Clear any template junk
+                        addonContainer.innerHTML = ""; 
                         
                         const label = document.createElement('label');
                         label.className = "d-block small mt-1";
-                        label.innerHTML = `<input type="checkbox" class="me-2"> ${item.Addons[0]} (+$${parseFloat(item.Addons[1]).toFixed(2)})`;
+                        // Added a specific class 'addon-checkbox' and data attributes for the script to find later
+                        label.innerHTML = `<input type="checkbox" class="me-2 addon-checkbox" data-addon-name="${item.Addons[0]}" data-addon-price="${item.Addons[1]}"> ${item.Addons[0]} (+$${parseFloat(item.Addons[1]).toFixed(2)})`;
                         addonContainer.appendChild(label);
                     } else {
                         addonContainer.style.display = "none";
@@ -74,13 +74,54 @@ document.addEventListener("DOMContentLoaded", async function() {
                     addonContainer.style.display = "none";
                 }
 
+                // --- NEW: ADD TO CART LOGIC ---
+                const addBtn = clone.querySelector('.add-btn') || clone.querySelector('button');
+                if (addBtn) {
+                    addBtn.addEventListener('click', function() {
+                        let currentCart = JSON.parse(localStorage.getItem('hawkerCart')) || [];
+                        
+                        // Calculate price with addons
+                        let finalPrice = priceValue;
+                        let selectedAddons = [];
+                        
+                        // Look inside the specific card for checked boxes
+                        const card = addBtn.closest('.food-item') || addBtn.parentElement;
+                        const checkboxes = card.querySelectorAll('.addon-checkbox');
+                        
+                        checkboxes.forEach(cb => {
+                            if (cb.checked) {
+                                finalPrice += parseFloat(cb.dataset.addonPrice);
+                                selectedAddons.push(cb.dataset.addonName);
+                            }
+                        });
+
+                        // Create unique name if there are addons (to prevent stacking rice with gizzard on top of plain rice)
+                        const cartItemName = selectedAddons.length > 0 ? `${itemName} (+${selectedAddons.join(', ')})` : itemName;
+
+                        // Check if exact same item exists
+                        const existingItem = currentCart.find(i => i.name === cartItemName);
+
+                        if (existingItem) {
+                            existingItem.quantity += 1;
+                        } else {
+                            currentCart.push({
+                                name: cartItemName,
+                                price: finalPrice,
+                                quantity: 1
+                            });
+                        }
+
+                        localStorage.setItem('hawkerCart', JSON.stringify(currentCart));
+                        alert(`${cartItemName} added to cart!`);
+                    });
+                }
+
                 // --- GRID ROUTING ---
                 if (isDrink) {
                     drinksGrid.appendChild(clone);
                 } else if (isMain) {
                     classicsGrid.appendChild(clone);
                 } else {
-                    // This is where "Extra Rice", "Gizzard", "Satay" go
                     addonsGrid.appendChild(clone);
                 }
             });
@@ -89,4 +130,4 @@ document.addEventListener("DOMContentLoaded", async function() {
         }
     }
     loadMenu();
-}); 
+});

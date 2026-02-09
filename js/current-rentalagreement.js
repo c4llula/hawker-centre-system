@@ -1,23 +1,108 @@
-// grab sidebar and top bar elements
-const sidebarItems = document.querySelectorAll('.sidebar ul li');
-const topBarButtons = document.querySelectorAll('.top-bar button');
+let db;
+const VENDOR_NAME = "Tian Tian Chicken Rice";
 
-// sidebar page mappings
+window.addEventListener('load', function() {
+  setTimeout(() => {
+    try {
+      db = firebase.firestore();
+      console.log('✅ Firestore connected');
+      loadRentalAgreements();
+    } catch (error) {
+      console.error('❌ Error initializing Firebase:', error);
+    }
+  }, 500);
+});
+
+// ===== LOAD RENTAL AGREEMENTS FROM DATABASE =====
+async function loadRentalAgreements() {
+  const tableBody = document.getElementById('rental-table-body');
+  
+  try {
+    if (!db) {
+      console.error('Database not initialized');
+      return;
+    }
+
+    // Query the correct collection name (lowercase)
+    const rentalSnapshot = await db.collection('rentalagreement')
+      .where('vendorId', '==', VENDOR_NAME)
+      .get();
+
+    if (rentalSnapshot.empty) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="5" style="text-align: center; color: #666;">
+            No rental agreements found
+          </td>
+        </tr>
+      `;
+      console.log('⚠️ No rental agreements found');
+      return;
+    }
+
+    // Convert to array and sort in JavaScript
+    const rentals = [];
+    rentalSnapshot.forEach(doc => {
+      rentals.push(doc.data());
+    });
+
+    // Sort by startDate descending (newest first)
+    rentals.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+
+    // Build table rows
+    let html = '';
+    rentals.forEach(rental => {
+      const statusClass = rental.status === 'Active' ? 'active' : 'expired';
+      const startDate = formatDate(rental.startDate);
+      const endDate = formatDate(rental.endDate);
+      
+      html += `
+        <tr>
+          <td>${rental.stallNumber}</td>
+          <td>${startDate}</td>
+          <td>${endDate}</td>
+          <td>$${rental.fee}</td>
+          <td class="status ${statusClass}">${rental.status}</td>
+        </tr>
+      `;
+    });
+
+    tableBody.innerHTML = html;
+    console.log('✅ Rental agreements loaded successfully');
+
+  } catch (error) {
+    console.error('Error loading rental agreements:', error);
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="5" style="text-align: center; color: #d32f2f;">
+          Error loading data: ${error.message}
+        </td>
+      </tr>
+    `;
+  }
+}
+
+// ===== HELPER FUNCTION TO FORMAT DATES =====
+function formatDate(dateString) {
+  if (!dateString) return '';
+  
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  
+  return `${day}/${month}/${year}`;
+}
+
+// ===== SIDEBAR NAVIGATION =====
+const sidebarItems = document.querySelectorAll('.sidebar ul li');
 const sidebarPages = {
   'My Store': 'vendor-dashboard.html',
   'Menu': 'vendor-menu.html',
-  'Orders': 'vendor-orders.html',
+  'Orders': 'order-requests.html',
   'Rental Agreement': 'current-rentalagreement.html'
 };
 
-// top bar page mappings
-const topBarPages = {
-  'Rental Agreement': 'current-rentalagreement.html',
-  'Renew Rental': 'renew-rentalagreement.html',
-  'Rental History': 'rentalagreement-history.html'
-};
-
-// sidebar navigation
 sidebarItems.forEach(item => {
   item.addEventListener('click', function() {
     const pageName = this.textContent.trim();
@@ -27,30 +112,17 @@ sidebarItems.forEach(item => {
   });
 });
 
-// top bar navigation
-topBarButtons.forEach(button => {
-  button.addEventListener('click', function() {
-    const pageName = this.textContent.trim();
-    if (topBarPages[pageName]) {
-      window.location.href = topBarPages[pageName];
-    }
-  });
+// ===== TOP BAR BUTTON NAVIGATION =====
+document.getElementById('rental-agreement-btn').addEventListener('click', function() {
+  window.location.href = 'current-rentalagreement.html';
 });
 
-// grab all the table rows
-const tableRows = document.querySelectorAll('tbody tr');
-// when someone clicks a row, highlight it based on status
-tableRows.forEach(row => {
-  row.addEventListener('click', function() {
-    // clear background color from all rows first
-    tableRows.forEach(r => r.style.backgroundColor = '');
-    // find the status badge in this row
-    const status = this.querySelector('.status');
-    // if status is active, make row green, otherwise make it pink
-    if (status.classList.contains('active')) {
-      this.style.backgroundColor = '#e8f5e9';
-    } else {
-      this.style.backgroundColor = '#ffe6ee';
-    }
-  });
+document.getElementById('renew-rental-btn').addEventListener('click', function() {
+  window.location.href = 'renew-rentalagreement.html';
 });
+
+document.getElementById('rental-history-btn').addEventListener('click', function() {
+  window.location.href = 'rentalagreement-history.html';
+});
+
+console.log('✅ Rental agreement page ready');

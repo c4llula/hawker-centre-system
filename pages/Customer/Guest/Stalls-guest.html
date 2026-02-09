@@ -4,211 +4,362 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HawkersGo - Stalls</title>
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="Stalls.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <!-- External CSS file -->
+  <link rel="stylesheet" href="/css/Stalls.css">
 </head>
-<body class = "p-0">
-  <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <span class="ms-2">HawkerGo</span>
-        </a>
+<body>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNavbar"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav
+        class="navbar navbar-expand-lg navbar-dark fixed-top"
+        style="background: #305652; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2)"
+      >
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <span class="ms-2">HawkerGo</span>
+          </a>
 
-        <div class="collapse navbar-collapse" id="mainNavbar">
-          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="home-page-guest.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Order</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="customerEng-guest.html"
-                >Customer Portal</a
-              >
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="moreDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                More
-              </a>
-              <ul
-                class="dropdown-menu dropdown-menu-dark"
-                aria-labelledby="moreDropdown"
-              >
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a class="dropdown-item" href="orderTracking-guest.html"
-                    >Order Tracking</a
-                  >
-                </li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a class="dropdown-item" href="likedItems-guest.html"
-                    >Liked Items</a
-                  >
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-          <div class="d-flex align-items-center">
-            <a
-              href="#"
-              class="btn btn-link text-white text-decoration-none me-3"
-              >Login</a
-            >
-            <a href="#" class="btn btn-light fw-bold">Sign Up</a>
+          <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="home-page-user.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="hawker-centers-user.html">Order</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="customerEng-user.html"
+                  >Customer Portal</a
+                >
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="moreDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  More
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-dark"
+                  aria-labelledby="moreDropdown"
+                >
+                  <li>
+                    <a class="dropdown-item" href="LoyaltyDiscount.html"
+                      >Loyalty & Discount</a
+                    >
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="orderTracking-user.html"
+                      >Order Tracking</a
+                    >
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="likedItems-user.html"
+                      >Liked Items</a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+            <div class="d-flex align-items-center">
+              <a href="main-login.html" class="btn btn-light fw-bold"
+                >Log Out</a
+              >
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
-    <br><br>
-  <!-- Main Content -->
-  <div class="container">
-    <h1 class="title" style = text-align:center>🌿Stalls</h1>
-    <main class="main">
-      <section class="filter">
+      </nav>
+  <div class="container mt-5 pt-5">
+    <h1 class="text-center mb-4">🌿 Stalls</h1>
+    
+    <main class="main-layout">
+      <aside class="filter-sidebar">
         <h3>Filters</h3>
+        
         <h4>Category</h4>
-        <fieldset>
+        <fieldset class="filter-group">
           <label><input type="checkbox" name="category" value="veg" /> Veg</label>
           <label><input type="checkbox" name="category" value="no-veg" /> No Veg</label>
         </fieldset> 
+        
         <h4>Cuisines</h4>
-        <fieldset>
-          <label><input type="checkbox" value="chinese" /> Chinese</label>
-          <label><input type="checkbox" value="indian" /> Indian</label>
-          <label><input type="checkbox" value="malay" /> Malay</label>
-          <label><input type="checkbox" value="western" /> Western</label>
+        <fieldset class="filter-group">
+          <label><input type="checkbox" class="filter-cuisine" value="chinese" /> Chinese</label>
+          <label><input type="checkbox" class="filter-cuisine" value="indian" /> Indian</label>
+          <label><input type="checkbox" class="filter-cuisine" value="malay" /> Malay</label>
+          <label><input type="checkbox" class="filter-cuisine" value="western" /> Western</label>
         </fieldset>
-      </section>
-      <section class="stalls">
+        
+        <button id="reset-btn" class="btn btn-sm btn-outline-secondary w-100 mt-2">Reset Filters</button>
+      </aside>
+      
+      <section id="stalls-container" class="stalls-grid">
+        <!-- Hardcoded Stalls with your actual images -->
         <a href="First Menu-guest.html" class="stall-link">
-          <article class="stall" data-category="veg" data-cuisine="malay">
-            <img src="Stall Images/Rojak, Popiah & Cockle.webp" alt="Rojak, Popiah & Cockle">
-            <p class="stall-name">Rojak, Popiah & Cockle</p>
-            <p class="stall-time">Waiting Time: 30m</p> 
+          <article class="stall" data-veg="false" data-cuisine="chinese">
+            <img src="/imgs/Rojak, Popiah & Cockle.webp" 
+                 alt="Rojak, Popiah & Cockle" 
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x200/FF6B6B/FFFFFF?text=Rojak'">
+            <div class="stall-name">Rojak, Popiah & Cockle</div>
+            <div class="stall-time">Waiting Time: 20m</div>
+            <div class="stall-rating">⭐ 4.5/5</div>
           </article>
         </a>
+
         <a href="Second Menu-guest.html" class="stall-link">
-          <article class="stall" data-category="no-veg" data-cuisine="chinese">
-            <img src="Stall Images/Tian Tian Hainanese Chicken Rice.webp" alt="Tian Tian Hainanese Chicken Rice">
-            <p class="stall-name">Tian Tian Hainanese Chicken Rice</p>
-            <p class="stall-time">Waiting Time: 30m</p>
+          <article class="stall" data-veg="false" data-cuisine="chinese">
+            <img src="/imgs/Tian Tian Hainanese Chicken Rice.webp" 
+                 alt="Tian Tian Hainanese Chicken Rice" 
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x200/FF6B6B/FFFFFF?text=Tian+Tian'">
+            <div class="stall-name">Tian Tian Hainanese Chicken Rice</div>
+            <div class="stall-time">Waiting Time: 30m</div>
+            <div class="stall-rating">⭐ 4.8/5</div>
           </article>
         </a>
+
         <a href="#" class="stall-link">
-          <article class="stall" data-category="no-veg" data-cuisine="chinese">
-            <img src="Stall Images/Oriental Stall.webp" alt="Oriental Stall">
-            <p class="stall-name">Oriental Stall</p>
-            <p class="stall-time">Waiting Time: 30m</p>
+          <article class="stall" data-veg="false" data-cuisine="chinese">
+            <img src="/imgs/Oriental Stall.webp" 
+                 alt="Oriental Stall" 
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x200/FF6B6B/FFFFFF?text=Oriental'">
+            <div class="stall-name">Oriental Stall</div>
+            <div class="stall-time">Waiting Time: 15m</div>
+            <div class="stall-rating">⭐ 4.2/5</div>
           </article>
         </a>
+
         <a href="#" class="stall-link">
-          <article class="stall" data-category="no-veg" data-cuisine="chinese">
-            <img src="Stall Images/Zhen Zhen Porridge.webp" alt="Zhen Zhen Porridge">
-            <p class="stall-name">Zhen Zhen Porridge</p>
-            <p class="stall-time">Waiting Time: 30m</p>
+          <article class="stall" data-veg="false" data-cuisine="chinese">
+            <img src="/imgs/Zhen Zhen Porridge.webp" 
+                 alt="Zhen Zhen Porridge" 
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x200/FF6B6B/FFFFFF?text=Zhen+Zhen'">
+            <div class="stall-name">Zhen Zhen Porridge</div>
+            <div class="stall-time">Waiting Time: 25m</div>
+            <div class="stall-rating">⭐ 4.3/5</div>
           </article>
         </a>
+
         <a href="#" class="stall-link">
-          <article class="stall" data-category="no-veg" data-cuisine="chinese">
-            <img src="Stall Images/Jin Hua Sliced Fish Bee Hoon.webp" alt="Jin Hua Sliced Fish Bee Hoon">
-            <p class="stall-name">Jin Hua Sliced Fish Bee Hoon</p>
-            <p class="stall-time">Waiting Time: 30m</p>  
+          <article class="stall" data-veg="false" data-cuisine="chinese">
+            <img src="/imgs/Jin Hua Sliced Fish Bee Hoon.webp" 
+                 alt="Jin Hua Sliced Fish Bee Hoon" 
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x200/FF6B6B/FFFFFF?text=Jin+Hua'">
+            <div class="stall-name">Jin Hua Sliced Fish Bee Hoon</div>
+            <div class="stall-time">Waiting Time: 20m</div>
+            <div class="stall-rating">⭐ 4.6/5</div>
           </article>
         </a>
+
         <a href="#" class="stall-link">
-          <article class="stall" data-category="no-veg" data-cuisine="malay">
-            <img src="Stall Images/1980 Penang Prawn Noodle.webp" alt="1980 Penang Prawn Noodle">
-            <p class="stall-name">1980 Penang Prawn Noodle</p>
-            <p class="stall-time">Waiting Time: 30m</p>
+          <article class="stall" data-veg="false" data-cuisine="malay">
+            <img src="/imgs/1980 Penang Prawn Noodle.webp" 
+                 alt="1980 Penang Prawn Noodle" 
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x200/FF6B6B/FFFFFF?text=Penang'">
+            <div class="stall-name">1980 Penang Prawn Noodle</div>
+            <div class="stall-time">Waiting Time: 35m</div>
+            <div class="stall-rating">⭐ 4.7/5</div>
           </article>
         </a>
       </section>
     </main>
   </div>
-
-  <!-- Footer -->
-  <footer class="bg-dark text-white py-4 mt-5">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
-          <a
-            href="#"
-            class="text-white text-decoration-none d-flex align-items-center justify-content-center justify-content-md-start"
-          >
-            <img
-              src="https://via.placeholder.com/30"
-              alt="Logo"
-              class="rounded-circle"
-            />
-            <span class="ms-2 fw-bold">HawkersGo</span>
-          </a>
+  
+    <footer
+      class="text-white py-4 mt-5"
+      style="background: #305652; box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2)"
+    >
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+            <a
+              href="#"
+              class="text-white text-decoration-none d-flex align-items-center justify-content-center justify-content-md-start"
+            >
+              <span class="ms-2 fw-bold">HawkersGo</span>
+            </a>
+          </div>
+          <div class="col-md-8 text-center text-md-end">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item me-3">
+                <a href="#" class="text-white-50 text-decoration-none"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li class="list-inline-item me-4">
+                <a href="#" class="text-white-50 text-decoration-none">Terms</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#" class="text-white ms-2">FB</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#" class="text-white ms-2">IG</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#" class="text-white ms-2">X</a>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <div class="col-md-8 text-center text-md-end">
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item me-3">
-              <a href="#" class="text-white-50 text-decoration-none"
-                >Privacy Policy</a
-              >
-            </li>
-            <li class="list-inline-item me-4">
-              <a href="#" class="text-white-50 text-decoration-none">Terms</a>
-            </li>
-
-            <li class="list-inline-item">
-              <a href="#" class="text-white ms-2"
-                ><i class="bi bi-facebook"></i> FB</a
-              >
-            </li>
-            <li class="list-inline-item">
-              <a href="#" class="text-white ms-2"
-                ><i class="bi bi-instagram"></i> IG</a
-              >
-            </li>
-            <li class="list-inline-item">
-              <a href="#" class="text-white ms-2"
-                ><i class="bi bi-twitter"></i> X</a
-              >
-            </li>
-          </ul>
+        <hr class="mt-4 border-secondary" />
+        <div class="text-center text-white-50 small">
+          &copy; 2024 HawkersGo. All rights reserved.
         </div>
       </div>
-
-      <hr class="mt-4 border-secondary" />
-      <div class="text-center text-white-50 small">
-        &copy; 2024 HawkersGo. All rights reserved.
-      </div>
-    </div>
-  </footer>
+    </footer>
 
   <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="Stalls.js"></script>
+  
+  <script>
+    // Simple filter functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log("Page loaded - setting up filters");
+      
+      // Get all filter checkboxes
+      const categoryCheckboxes = document.querySelectorAll('input[name="category"]');
+      const cuisineCheckboxes = document.querySelectorAll('.filter-cuisine');
+      const resetBtn = document.getElementById('reset-btn');
+      const stalls = document.querySelectorAll('.stall');
+      
+      // Debug: Check if images are loading
+      setTimeout(function() {
+        const images = document.querySelectorAll('img');
+        console.log(`Total images: ${images.length}`);
+        
+        images.forEach(function(img, index) {
+          console.log(`Image ${index + 1} src: ${img.src}`);
+          
+          // Check if image loaded successfully
+          if (img.complete) {
+            if (img.naturalHeight === 0) {
+              console.error(`❌ Image ${index + 1} FAILED to load: ${img.src}`);
+              console.log(`  - Check if file exists: ${img.src}`);
+              console.log(`  - Check if path is correct`);
+              console.log(`  - Check file extension (.webp might not be supported in some browsers)`);
+            } else {
+              console.log(`✅ Image ${index + 1} loaded successfully: ${img.src}`);
+            }
+          } else {
+            console.log(`⏳ Image ${index + 1} still loading: ${img.src}`);
+          }
+        });
+      }, 100);
+      
+      // Filter function
+      function filterStalls() {
+        // Get selected categories
+        const selectedCategories = [];
+        categoryCheckboxes.forEach(cb => {
+          if (cb.checked) selectedCategories.push(cb.value);
+        });
+        
+        // Get selected cuisines
+        const selectedCuisines = [];
+        cuisineCheckboxes.forEach(cb => {
+          if (cb.checked) selectedCuisines.push(cb.value);
+        });
+        
+        let visibleCount = 0;
+        
+        // Apply filters to each stall
+        stalls.forEach(stall => {
+          let showStall = true;
+          
+          // Filter by category (veg/no-veg)
+          if (selectedCategories.length > 0) {
+            const stallCategory = stall.getAttribute('data-veg') === 'true' ? 'veg' : 'no-veg';
+            if (!selectedCategories.includes(stallCategory)) {
+              showStall = false;
+            }
+          }
+          
+          // Filter by cuisine
+          if (selectedCuisines.length > 0) {
+            const stallCuisine = stall.getAttribute('data-cuisine');
+            if (!selectedCuisines.includes(stallCuisine)) {
+              showStall = false;
+            }
+          }
+          
+          // Show/hide stall
+          const stallLink = stall.closest('.stall-link');
+          if (showStall) {
+            stallLink.style.display = 'block';
+            visibleCount++;
+          } else {
+            stallLink.style.display = 'none';
+          }
+        });
+        
+        console.log(`${visibleCount} stalls visible after filtering`);
+        
+        // Show message if no stalls match filters
+        const stallsContainer = document.getElementById('stalls-container');
+        let noResultsMsg = stallsContainer.querySelector('.no-results');
+        
+        if (visibleCount === 0 && !noResultsMsg) {
+          noResultsMsg = document.createElement('div');
+          noResultsMsg.className = 'no-results';
+          noResultsMsg.textContent = 'No stalls match your filters. Try different selections.';
+          stallsContainer.appendChild(noResultsMsg);
+        } else if (visibleCount > 0 && noResultsMsg) {
+          noResultsMsg.remove();
+        }
+      }
+      
+      // Add event listeners to category checkboxes
+      categoryCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', filterStalls);
+      });
+      
+      // Add event listeners to cuisine checkboxes
+      cuisineCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', filterStalls);
+      });
+      
+      // Reset button
+      resetBtn.addEventListener('click', function() {
+        // Uncheck all checkboxes
+        categoryCheckboxes.forEach(cb => cb.checked = false);
+        cuisineCheckboxes.forEach(cb => cb.checked = false);
+        
+        // Show all stalls
+        stalls.forEach(stall => {
+          stall.closest('.stall-link').style.display = 'block';
+        });
+        
+        // Remove no results message if exists
+        const noResultsMsg = document.querySelector('.no-results');
+        if (noResultsMsg) {
+          noResultsMsg.remove();
+        }
+        
+        console.log("Filters reset");
+      });
+    });
+  </script>
 </body>
 </html>

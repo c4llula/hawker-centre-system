@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>NEA - Regulatory & Compliance</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,22 +13,22 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        HawkersGo
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="nea-login.html">Logout</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                HawkersGo
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/Login and Signup/main-login.html">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <div class="container">
         <div class="page-header">
@@ -44,11 +44,11 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <h3>Total Vendors</h3>
-                <div class="stat-number" id="totalVendors">6</div>
+                <div class="stat-number" id="totalVendors">0</div>
             </div>
             <div class="stat-card">
                 <h3>Pending Inspections</h3>
-                <div class="stat-number" id="pendingInspections">3</div>
+                <div class="stat-number" id="pendingInspections">0</div>
             </div>
             <div class="stat-card">
                 <h3>This Month</h3>
@@ -69,13 +69,7 @@
                     <div class="form-group">
                         <label for="vendorSelect">Vendor Name</label>
                         <select id="vendorSelect" required>
-                            <option value="">Select vendor...</option>
-                            <option value="Rojak, Popiah & Cockle">Rojak, Popiah & Cockle</option>
-                            <option value="Tian Tian Hainanese Chicken Rice">Tian Tian Hainanese Chicken Rice</option>
-                            <option value="Oriental Stall">Oriental Stall</option>
-                            <option value="Zhen Zhen Porridge">Zhen Zhen Porridge</option>
-                            <option value="Jin Hua Sliced Fish Bee Hoon">Jin Hua Sliced Fish Bee Hoon</option>
-                            <option value="1980 Penang Prawn Noodle">1980 Penang Prawn Noodle</option>
+                            <option value="">Loading vendors...</option>
                         </select>
                     </div>
                     <div class="form-row">
@@ -105,28 +99,7 @@
                 <h2>Upcoming Inspections</h2>
                 <div class="inspection-list" id="upcomingList">
                     <div class="inspection-item">
-                        <div class="inspection-item-header">
-                            <div class="vendor-name">Rojak, Popiah & Cockle</div>
-                            <span class="status-badge status-pending">Pending</span>
-                        </div>
-                        <div class="inspection-date">📅 Feb 10, 2026 at 10:00 AM</div>
-                        <div class="inspection-time">Officer: Sarah Tan</div>
-                    </div>
-                    <div class="inspection-item">
-                        <div class="inspection-item-header">
-                            <div class="vendor-name">Oriental Stall</div>
-                            <span class="status-badge status-pending">Pending</span>
-                        </div>
-                        <div class="inspection-date">📅 Feb 12, 2026 at 2:00 PM</div>
-                        <div class="inspection-time">Officer: John Lim</div>
-                    </div>
-                    <div class="inspection-item">
-                        <div class="inspection-item-header">
-                            <div class="vendor-name">Jin Hua Sliced Fish Bee Hoon</div>
-                            <span class="status-badge status-pending">Pending</span>
-                        </div>
-                        <div class="inspection-date">📅 Feb 15, 2026 at 11:30 AM</div>
-                        <div class="inspection-time">Officer: Sarah Tan</div>
+                        <div style="text-align:center;opacity:0.6;">No upcoming inspections</div>
                     </div>
                 </div>
             </div>
@@ -151,8 +124,8 @@
                             <option value="">Select grade...</option>
                             <option value="A">A (85-100) - Excellent</option>
                             <option value="B">B (70-84) - Good</option>
-                            <option value="C">C (50-69) - Average</option>
-                            <option value="D">D (Below 50) - Below Average</option>
+                            <option value="C">C (55-69) - Average</option>
+                            <option value="D">D (Below 55) - Below Average</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -215,56 +188,45 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody id="recordsTableBody"></tbody>
+                <tbody id="recordsTableBody">
+                    <tr>
+                        <td colspan="7" style="text-align:center;padding:20px;opacity:0.6;">Loading records...</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
+
     <footer class="bg-dark text-white py-4 mt-5">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
-          <a
-            href="#"
-            class="text-white text-decoration-none d-flex align-items-center justify-content-center justify-content-md-start"
-          >
-            <img
-              src="https://via.placeholder.com/30"
-              alt="Logo"
-              class="rounded-circle"
-            />
-            <span class="ms-2 fw-bold">HawkersGo</span>
-          </a>
-        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                    <a href="#" class="text-white text-decoration-none d-flex align-items-center justify-content-center justify-content-md-start">
+                        <img src="https://via.placeholder.com/30" alt="Logo" class="rounded-circle" />
+                        <span class="ms-2 fw-bold">HawkersGo</span>
+                    </a>
+                </div>
 
-        <div class="col-md-8 text-center text-md-end">
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item me-3">
-              <a href="#" class="text-white-50 text-decoration-none"
-                >Privacy Policy</a
-              >
-            </li>
-            <li class="list-inline-item me-4">
-              <a href="#" class="text-white-50 text-decoration-none">Terms</a>
-            </li>
-
-            <li class="list-inline-item">
-              <a href="#" class="text-white ms-2"
-                ><i class="bi bi-facebook"></i> FB</a
-              >
-            </li>
-            <li class="list-inline-item">
-              <a href="#" class="text-white ms-2"
-                ><i class="bi bi-instagram"></i> IG</a
-              >
-            </li>
-            <li class="list-inline-item">
-              <a href="#" class="text-white ms-2"
-                ><i class="bi bi-twitter"></i> X</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
+                <div class="col-md-8 text-center text-md-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item me-3">
+                            <a href="#" class="text-white-50 text-decoration-none">Privacy Policy</a>
+                        </li>
+                        <li class="list-inline-item me-4">
+                            <a href="#" class="text-white-50 text-decoration-none">Terms</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="text-white ms-2"><i class="bi bi-facebook"></i> FB</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="text-white ms-2"><i class="bi bi-instagram"></i> IG</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="text-white ms-2"><i class="bi bi-twitter"></i> X</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
       <hr class="mt-4 border-secondary" />
       <div class="text-center text-white-50 small">
@@ -272,6 +234,8 @@
       </div>
     </div>
   </footer>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <script src="/js/nea-inspection.js"></script>
 </body>
 </html>

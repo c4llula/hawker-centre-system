@@ -7,12 +7,14 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <title>Vendor Management</title>
   <link rel="stylesheet" href="/css/vendor-menu.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: #305652; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand fw-bold" href="#">
         HawkersGo
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -38,11 +40,6 @@
   </div>
 
   <div class="content">
-    <div class="top-bar">
-      <button id="addmenu">Add Menu</button>
-      <button id="menulist">Menu List</button>
-    </div>
-
     <div id="menu-list-view">
       <h2>My Menus</h2>
       <div id="menus-container"></div>
@@ -85,7 +82,7 @@
     </div>
   </div>
 
-  <footer class="bg-dark text-white py-4 mt-5">
+  <footer class="text-white py-4 mt-5" style="background: #305652; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
@@ -122,8 +119,34 @@
       </div>
     </div>
   </footer>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBsn3nzbTWFP0f2k7XTmFsRxdAjd0vhDKA",
+      authDomain: "fed-assignment-33cc7.firebaseapp.com",
+      databaseURL: "https://fed-assignment-33cc7-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "fed-assignment-33cc7",
+      storageBucket: "fed-assignment-33cc7.firebasestorage.app",
+      messagingSenderId: "6435796920",
+      appId: "1:6435796920:web:5f521b0e023e8882a7014d"
+    };
+
+    // Initialize Firebase
+    try {
+      console.log('Initializing Firebase...');
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+        console.log('✅ Firebase initialized successfully');
+      } else {
+        console.log('✅ Firebase already initialized');
+      }
+    } catch (error) {
+      console.error('❌ Firebase initialization error:', error);
+    }
+  </script>
   <script src="/js/vendor-menu.js"></script>
 </body>
 </html>
