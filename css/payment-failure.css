@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  font-family: 'DM Sans', sans-serif;
     background-color: #fcfcfc;
     display: flex;
     flex-direction: column;

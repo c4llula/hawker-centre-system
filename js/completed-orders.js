@@ -1,39 +1,134 @@
-let db;
-const VENDOR_NAME = "Hawker Centre #B2-15";
-
 window.addEventListener('load', function() {
-  setTimeout(() => {
-    try {
-      db = firebase.firestore();
-      console.log('✅ Firestore connected');
-      loadCompletedOrders();
-    } catch (error) {
-      console.error('❌ Error initializing Firebase:', error);
+  console.log('DOM fully loaded');
+  
+  // Check if Firebase is initialized
+  if (!window.db) {
+    console.error('❌ Firebase not initialized');
+    const tableBody = document.querySelector('tbody');
+    if (tableBody) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="9" style="text-align: center; color: #d32f2f;">
+            Firebase not initialized. Please refresh the page.
+          </td>
+        </tr>
+      `;
     }
-  }, 500);
+    return;
+  }
+  
+  console.log('✅ Firebase is ready');
+  loadCompletedOrders();
+  
+  // Setup navigation AFTER DOM is loaded
+  setupNavigation();
 });
+
+// ===== SETUP NAVIGATION =====
+function setupNavigation() {
+  console.log('Setting up navigation...');
+  
+  // ===== SIDEBAR NAVIGATION =====
+  const sidebarItems = document.querySelectorAll('.sidebar ul li');
+  console.log('Found sidebar items:', sidebarItems.length);
+  
+  const sidebarPages = {
+    'My Store': 'vendor-dashboard.html',
+    'Menu': 'vendor-menu.html',
+    'Orders': 'order-requests.html',
+    'Rental Agreement': 'current-rentalagreement.html'
+  };
+
+  sidebarItems.forEach((item, index) => {
+    console.log(`Sidebar item ${index}: ${item.textContent}`);
+    item.addEventListener('click', function() {
+      const pageName = this.textContent.trim();
+      console.log(`Sidebar clicked: ${pageName}`);
+      if (sidebarPages[pageName]) {
+        console.log(`Redirecting to: ${sidebarPages[pageName]}`);
+        window.location.href = sidebarPages[pageName];
+      } else {
+        console.log(`No page mapping found for: ${pageName}`);
+      }
+    });
+    
+    // Add cursor pointer for visual feedback
+    item.style.cursor = 'pointer';
+  });
+
+  // ===== TOP BAR BUTTONS =====
+  const topBarButtons = document.querySelectorAll('.top-bar button');
+  console.log('Found top bar buttons:', topBarButtons.length);
+  
+  const topBarPages = {
+    'Order Requests': 'order-requests.html',
+    'Current Orders': 'current-orders.html',
+    'Completed Orders': 'completed-orders.html'
+  };
+
+  topBarButtons.forEach((button, index) => {
+    const buttonText = button.textContent.trim();
+    console.log(`Top bar button ${index}: "${buttonText}"`);
+    
+    button.addEventListener('click', function() {
+      const pageName = this.textContent.trim();
+      console.log(`Top bar button clicked: "${pageName}"`);
+      
+      if (topBarPages[pageName]) {
+        console.log(`Redirecting to: ${topBarPages[pageName]}`);
+        window.location.href = topBarPages[pageName];
+      } else {
+        console.log(`No page mapping found for: "${pageName}"`);
+        console.log('Available mappings:', Object.keys(topBarPages));
+      }
+    });
+    
+    // Add visual feedback on hover
+    button.style.cursor = 'pointer';
+  });
+  
+  console.log('Navigation setup complete');
+}
 
 // ===== LOAD COMPLETED ORDERS FROM DATABASE =====
 async function loadCompletedOrders() {
   const tableBody = document.querySelector('tbody');
   
+  if (!tableBody) {
+    console.error('Table body not found');
+    return;
+  }
+  
   try {
-    if (!db) {
+    if (!window.db) {
       console.error('Database not initialized');
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="9" style="text-align: center; color: #666;">
+            Database not initialized
+          </td>
+        </tr>
+      `;
       return;
     }
 
+    // Import Firestore functions for v9
+    const { collection, query, where, getDocs } = await import("https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js");
+
     // Query orders where stallLocation matches and status is "Prepared" or "Declined"
-    const ordersSnapshot = await db.collection('orders')
-      .where('stallLocation', '==', VENDOR_NAME)
-      .where('status', 'in', ['Prepared', 'Declined'])
-      .get();
+    const q = query(
+      collection(window.db, 'orders'),
+      where('stallLocation', '==', window.VENDOR_NAME),
+      where('status', 'in', ['Prepared', 'Declined'])
+    );
+
+    const ordersSnapshot = await getDocs(q);
 
     if (ordersSnapshot.empty) {
       tableBody.innerHTML = `
         <tr>
           <td colspan="9" style="text-align: center; color: #666;">
-            No completed orders
+            No completed orders found
           </td>
         </tr>
       `;
@@ -58,8 +153,13 @@ async function loadCompletedOrders() {
     let html = '';
     orders.forEach(order => {
       // Format items and quantities from the items array
-      const itemsHtml = order.items.map(item => item.name).join('<br>');
-      const quantityHtml = order.items.map(item => item.quantity).join('<br>');
+      const itemsHtml = order.items && order.items.length > 0 
+        ? order.items.map(item => item.name || 'Unknown Item').join('<br>')
+        : 'N/A';
+      
+      const quantityHtml = order.items && order.items.length > 0
+        ? order.items.map(item => item.quantity || '0').join('<br>')
+        : 'N/A';
       
       // Extract date and time from orderDate
       const orderDateTime = new Date(order.orderDate);
@@ -72,6 +172,21 @@ async function loadCompletedOrders() {
       // Determine payment method
       const payment = order.paymentMethod || 'Not specified';
       
+      // Calculate total - handle both string and number formats
+      let total = 0;
+      if (order.total) {
+        if (typeof order.total === 'string') {
+          total = parseFloat(order.total.replace('S$', '').replace('$', '').trim());
+        } else {
+          total = parseFloat(order.total);
+        }
+      }
+      
+      // Handle NaN total
+      if (isNaN(total)) {
+        total = 0;
+      }
+      
       // Determine if order was cancelled/declined
       const isCancelled = order.status === 'Declined';
       const rowClass = isCancelled ? 'cancelled-order' : '';
@@ -81,20 +196,20 @@ async function loadCompletedOrders() {
       html += `
         <tr class="${rowClass}">
           <td class="${statusClass}">${statusText}</td>
-          <td>${order.orderID}</td>
+          <td>${order.orderID || 'N/A'}</td>
           <td>${formattedDate}</td>
           <td>${formattedTime}</td>
           <td>${customerType}</td>
           <td>${itemsHtml}</td>
           <td>${quantityHtml}</td>
-          <td>$${parseFloat(order.total.replace('S$', '')).toFixed(2)}</td>
+          <td>$${total.toFixed(2)}</td>
           <td>${payment}</td>
         </tr>
       `;
     });
 
     tableBody.innerHTML = html;
-    console.log('✅ Completed orders loaded successfully');
+    console.log(`✅ ${orders.length} completed orders loaded`);
 
   } catch (error) {
     console.error('Error loading completed orders:', error);
@@ -110,7 +225,7 @@ async function loadCompletedOrders() {
 
 // ===== FORMAT DATE =====
 function formatDate(date) {
-  if (!date) return '';
+  if (!date || isNaN(date.getTime())) return 'N/A';
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const year = date.getFullYear();
@@ -119,7 +234,7 @@ function formatDate(date) {
 
 // ===== FORMAT TIME =====
 function formatTime(date) {
-  if (!date) return '';
+  if (!date || isNaN(date.getTime())) return 'N/A';
   let hours = date.getHours();
   const minutes = String(date.getMinutes()).padStart(2, '0');
   const ampm = hours >= 12 ? 'PM' : 'AM';
@@ -128,39 +243,4 @@ function formatTime(date) {
   return `${hours}:${minutes} ${ampm}`;
 }
 
-// ===== SIDEBAR NAVIGATION =====
-const sidebarItems = document.querySelectorAll('.sidebar ul li');
-const sidebarPages = {
-  'My Store': 'vendor-dashboard.html',
-  'Menu': 'vendor-menu.html',
-  'Orders': 'order-requests.html',
-  'Rental Agreement': 'current-rentalagreement.html'
-};
-
-sidebarItems.forEach(item => {
-  item.addEventListener('click', function() {
-    const pageName = this.textContent.trim();
-    if (sidebarPages[pageName]) {
-      window.location.href = sidebarPages[pageName];
-    }
-  });
-});
-
-// ===== TOP BAR BUTTONS =====
-const topBarButtons = document.querySelectorAll('.top-bar button');
-const topBarPages = {
-  'Order Requests': 'order-requests.html',
-  'Current Requests': 'current-orders.html',
-  'Orders Completed': 'completed-orders.html'
-};
-
-topBarButtons.forEach(button => {
-  button.addEventListener('click', function() {
-    const pageName = this.textContent.trim();
-    if (topBarPages[pageName]) {
-      window.location.href = topBarPages[pageName];
-    }
-  });
-});
-
-console.log('✅ Completed orders page ready');
+console.log('✅ Completed orders page script loaded');
