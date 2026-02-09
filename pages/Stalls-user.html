@@ -13,28 +13,81 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class = "p-0">
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="home-page-user.html">
-        <span class="ms-2">HawkersGo</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="Stalls-user.html">Stalls</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Checkout-user.html">Checkout</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <span class="ms-2">HawkerGo</span>
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="home-page-user.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="hawker-centers-user.html">Order</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="customerEng-user.html"
+                  >Customer Portal</a
+                >
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="moreDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  More
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-dark"
+                  aria-labelledby="moreDropdown"
+                >
+                  <li>
+                    <a class="dropdown-item" href="LoyaltyDiscount.html"
+                      >Loyalty & Discount</a
+                    >
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="orderTracking-user.html"
+                      >Order Tracking</a
+                    >
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="likedItems-user.html"
+                      >Liked Items</a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+            <div class="d-flex align-items-center">
+              <a href="main-login.html" class="btn btn-light fw-bold"
+                >Log Out</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+      <br><br>
 
   <!-- Main Content -->
   <div class="container">

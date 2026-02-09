@@ -18,7 +18,8 @@ function showForm(formType) {
                 btn.classList.add('selected');
             }
         });
-    } else {
+    }
+     else {
         document.getElementById('vendor-form').style.display = 'flex';
         // Highlight Store Owner button in both forms
         document.querySelectorAll('.type-option').forEach(btn => {
@@ -27,11 +28,6 @@ function showForm(formType) {
             }
         });
         
-        // OPTIONAL: Clear vendor form when switching to it
-        // document.getElementById('vendor-name').value = '';
-        // document.getElementById('vendor-email').value = '';
-        // document.getElementById('vendor-phone').value = '';
-        // document.getElementById('vendor-password').value = '';
     }
 }
 
@@ -55,6 +51,7 @@ function createAccount(type) {
         // Check if user already exists
         const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
         const userExists = existingUsers.some(u => u.email === customerData.email);
+        // Once it finds one matching item, it stops checking and returns true.
         
         if (userExists) {
             alert('User with this email already exists.');
@@ -71,7 +68,9 @@ function createAccount(type) {
         alert('Account created successfully!');
         window.location.href = "main-login.html";
         
-    } else {
+    } 
+    
+    else {
         // Get vendor form data using vendor-specific IDs
         const vendorBasicInfo = {
             name: document.getElementById('vendor-name').value,
@@ -90,6 +89,7 @@ function createAccount(type) {
         // Check if user already exists
         const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
         const userExists = existingUsers.some(u => u.email === vendorBasicInfo.email);
+        // Once it finds one matching item, it stops checking and returns true.
         
         if (userExists) {
             alert('User with this email already exists.');

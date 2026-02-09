@@ -1,18 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
     
-    if (searchInput) {
         searchInput.addEventListener('keypress', function(event) {
-            // If user presses Enter (key code 13)
-            if (event.key === 'Enter') {
-                // Get whatever they typed
-                const searchTerm = this.value.trim();
+            const searchTerm = this.value.trim(); 
+            
+            if (event.key === 'Enter' && searchTerm.length > 0) {
+                event.preventDefault(); 
+                const currentPage = window.location.pathname;
                 
-                // If they typed anything at all, go to Stalls.html
-                if (searchTerm.length > 0) {
-                    window.location.href = 'Stalls.html';
+                if (currentPage.includes('hawker-centers-guest')) {
+                    window.location.href = 'Stalls-guest.html';
+                } 
+                else if (currentPage.includes('hawker-centers-user')) {
+                    window.location.href = 'Stalls-user.html';
                 }
             }
         });
-    }
 });
