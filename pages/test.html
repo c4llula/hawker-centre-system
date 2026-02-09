@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Menu - Vendor Management</title>
+  <style>
+    :root {
+      --primary: #4caf50;
+      --secondary: #009688;
+      --danger: #e53935;
+      --bg: #f5f7fa;
+      --card-bg: #fff;
+      --text-dark: #333;
+      --shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text-dark);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--secondary), var(--primary));
+      padding: 20px 10px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar ul li {
+      padding: 14px;
+      color: #fff;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .sidebar ul li:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateX(5px);
+    }
+
+    /* Content */
+    .content {
+      margin-left: 240px;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 25px;
+      text-align: center;
+      color: #444;
+    }
+
+    /* Form */
+    .form {
+      background-color: var(--card-bg);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: block;
+      color: #555;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fafafa;
+      font-size: 15px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 6px rgba(76,175,80,0.4);
+      outline: none;
+      background-color: #fff;
+    }
+
+    .availability-options {
+      display: flex;
+      gap: 15px;
+    }
+
+    .availability-btn {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      border-radius: 25px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background-color: #fafafa;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .availability-btn:hover {
+      background-color: #e0f2f1;
+      transform: scale(1.05);
+    }
+
+    /* Buttons */
+    .form-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+    }
+
+    .form-buttons button {
+      padding: 12px 22px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+
+    .form-buttons button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .discard {
+      background: linear-gradient(135deg, var(--danger), #c62828);
+    }
+
+    .add-item {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <ul>
+      <li>🏬 My Store</li>
+      <li>🍔 Menu</li>
+      <li>🛒 Orders</li>
+      <li>🔑 Reset Password</li>
+      <li>📄 Rental Agreement</li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <h1>Add Menu Item</h1>
+    <div class="form">
+      <div class="form-group">
+        <span class="label">Food Name</span>
+        <input type="text" placeholder="Enter food name...">
+      </div>
+
+      <div class="form-group">
+        <span class="label">Food Description</span>
+        <textarea rows="3" placeholder="Enter food description..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <span class="label">Price</span>
+        <input type="number" placeholder="Enter price...">
+      </div>
+
+      <div class="form-group">
+        <span class="label">Availability</span>
+        <div class="availability-options">
+          <div class="availability-btn">Yes</div>
+          <div class="availability-btn">No</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <span class="label">Cuisine</span>
+        <select>
+          <option>Chinese</option>
+          <option>Malay</option>
+          <option>Indian</option>
+          <option>Indian-Muslim/Local</option>
+          <option>Indonesian</option>
+          <option>Western</option>
+        </select>
+      </div>
+
+      <div class="form-buttons">
+        <button class="discard">Discard</button>
+        <button class="add-item">Add Item</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,13 +1,44 @@
-// grab all the input fields from the HTML so we can work with them
+// ===== FIREBASE & DOM SETUP =====
+let db;
+let vendorDocId = "Tian Tian Chicken Rice"; // Default vendor
+let foodData = null;
+
+// Initialize Firebase and get references
+window.addEventListener('load', function() {
+  setTimeout(() => {
+    try {
+      db = firebase.firestore();
+      console.log('✅ Firestore connected');
+      
+      // Get data passed from vendor-menu.js
+      const tempFoodData = sessionStorage.getItem('tempFoodData');
+      if (tempFoodData) {
+        foodData = JSON.parse(tempFoodData);
+        vendorDocId = foodData.vendorDocId;
+        console.log('✅ Food data loaded from sessionStorage:', foodData);
+      }
+    } catch (error) {
+      console.error('❌ Error initializing:', error);
+      alert('Error initializing. Please try again.');
+    }
+  }, 500);
+});
+
+// ===== GET DOM ELEMENTS =====
 const foodNameField = document.getElementById('foodName');
 const foodDescriptionField = document.getElementById('foodDescription');
 const priceField = document.getElementById('price');
+const cuisineBtn = document.querySelector('.cuisine-btn');
+const cuisineOptions = document.querySelectorAll('.dropdown-content option');
+const availabilityButtons = document.querySelectorAll('.availability-btn');
+const addItemBtn = document.querySelector('.add-item');
+const discardBtn = document.querySelector('.discard');
 
-// set up default values for availability and cuisine
+// ===== DEFAULT VALUES =====
 let selectedAvailability = 'Yes';
 let selectedCuisine = 'Cuisine selection';
 
-// when someone clicks the food name field, make it editable and clear the placeholder text
+// ===== FOOD NAME FIELD - MAKE EDITABLE =====
 foodNameField.addEventListener('click', function() {
   this.contentEditable = true;
   this.focus();
@@ -16,7 +47,13 @@ foodNameField.addEventListener('click', function() {
   }
 });
 
-// same thing for the description field
+foodNameField.addEventListener('blur', function() {
+  if (this.textContent.trim() === '') {
+    this.textContent = 'Enter food name...';
+  }
+});
+
+// ===== FOOD DESCRIPTION FIELD - MAKE EDITABLE =====
 foodDescriptionField.addEventListener('click', function() {
   this.contentEditable = true;
   this.focus();
@@ -25,7 +62,13 @@ foodDescriptionField.addEventListener('click', function() {
   }
 });
 
-// and same for the price field
+foodDescriptionField.addEventListener('blur', function() {
+  if (this.textContent.trim() === '') {
+    this.textContent = 'Enter food description...';
+  }
+});
+
+// ===== PRICE FIELD - MAKE EDITABLE =====
 priceField.addEventListener('click', function() {
   this.contentEditable = true;
   this.focus();
@@ -34,49 +77,53 @@ priceField.addEventListener('click', function() {
   }
 });
 
-// get all the availability buttons (Yes/No)
-const availabilityButtons = document.querySelectorAll('.availability button');
-// when someone clicks a button, highlight it and save their choice
+priceField.addEventListener('blur', function() {
+  if (this.textContent.trim() === '') {
+    this.textContent = 'Enter price...';
+  }
+});
+
+// ===== AVAILABILITY BUTTONS (YES/NO) =====
 availabilityButtons.forEach(button => {
   button.addEventListener('click', function() {
-    // first remove the highlight from all buttons
+    // Remove selected class from all buttons
     availabilityButtons.forEach(btn => btn.classList.remove('selected'));
-    // then add highlight to the one they clicked
+    // Add selected class to clicked button
     this.classList.add('selected');
-    // save what they picked
-    selectedAvailability = this.textContent;
+    // Save selection
+    selectedAvailability = this.textContent.trim();
+    console.log('Selected availability:', selectedAvailability);
   });
 });
 
-// grab the cuisine dropdown button and all the options inside it
-const cuisineButton = document.querySelector('.dropdown button');
-const cuisineOptions = document.querySelectorAll('.dropdown-content option');
+// Set default selection
+availabilityButtons[0].classList.add('selected');
 
-// when they click the cuisine button, show or hide the dropdown menu
-cuisineButton.addEventListener('click', function(e) {
-  e.stopPropagation(); // stops the click from bubbling up to document
+// ===== CUISINE DROPDOWN =====
+cuisineBtn.addEventListener('click', function(e) {
+  e.stopPropagation();
   const dropdown = this.nextElementSibling;
-  dropdown.classList.toggle('show'); // flip between showing and hiding
+  dropdown.classList.toggle('show');
 });
 
-// when someone clicks a cuisine option, update the button and save their choice
 cuisineOptions.forEach(option => {
   option.addEventListener('click', function() {
-    selectedCuisine = this.textContent; // save what they picked
-    cuisineButton.textContent = selectedCuisine; // update button text to show it
-    document.querySelector('.dropdown-content').classList.remove('show'); // close the dropdown
+    selectedCuisine = this.textContent.trim();
+    cuisineBtn.textContent = selectedCuisine;
+    document.querySelector('.dropdown-content').classList.remove('show');
+    console.log('Selected cuisine:', selectedCuisine);
   });
 });
 
-// if they click anywhere else on the page, close the dropdown
-document.addEventListener('click', function() {
-  document.querySelector('.dropdown-content').classList.remove('show');
+// Close dropdown if click elsewhere
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.dropdown')) {
+    document.querySelector('.dropdown-content').classList.remove('show');
+  }
 });
 
-// get all the sidebar menu items
+// ===== SIDEBAR NAVIGATION =====
 const sidebarItems = document.querySelectorAll('.sidebar ul li');
-
-// this object connects menu names to their HTML files
 const sidebarPages = {
   'My Store': 'vendor-dashboard.html',
   'Menu': 'vendor-menu.html',
@@ -84,71 +131,98 @@ const sidebarPages = {
   'Rental Agreement': 'current-rentalagreement.html'
 };
 
-// when someone clicks a sidebar item, redirect them to that page
 sidebarItems.forEach(item => {
   item.addEventListener('click', function() {
-    const pageName = this.textContent.trim(); // get the text they clicked
-    if (sidebarPages[pageName]) { // check if we have a page for it
-      window.location.href = sidebarPages[pageName]; // go to that page
+    const pageName = this.textContent.trim();
+    if (sidebarPages[pageName]) {
+      window.location.href = sidebarPages[pageName];
     }
   });
 });
 
-// if they click the discard button, confirm then go back to menu
-document.querySelector('.discard').addEventListener('click', function() {
+// ===== DISCARD BUTTON =====
+discardBtn.addEventListener('click', function() {
   if (confirm('Discard changes and go back to menu?')) {
+    // Clear sessionStorage
+    sessionStorage.removeItem('tempFoodData');
     window.location.href = 'vendor-menu.html';
   }
 });
 
-// when they click "Add Item", validate everything and save it
-document.querySelector('.add-item').addEventListener('click', function() {
-  // get all the values they entered
+// ===== ADD ITEM BUTTON - SAVE TO FIREBASE =====
+addItemBtn.addEventListener('click', async function() {
+  // Get all input values
   const foodName = foodNameField.textContent.trim();
   const foodDescription = foodDescriptionField.textContent.trim();
   const price = priceField.textContent.trim();
 
-  // check if food name is filled in
+  // ===== VALIDATION =====
   if (foodName === '' || foodName === 'Enter food name...') {
-    alert('Please enter a food name');
-    return; // stop here if empty
+    alert('❌ Please enter a food name');
+    return;
   }
-  // check if description is filled in
+  
   if (foodDescription === '' || foodDescription === 'Enter food description...') {
-    alert('Please enter a food description');
+    alert('❌ Please enter a food description');
     return;
   }
-  // check if price is filled in
+  
   if (price === '' || price === 'Enter price...') {
-    alert('Please enter a price');
+    alert('❌ Please enter a price');
     return;
   }
-  // check if they picked a cuisine
+  
   if (selectedCuisine === 'Cuisine selection') {
-    alert('Please select a cuisine');
+    alert('❌ Please select a cuisine');
     return;
   }
 
-  // create an object with all the food item data
+  // ===== PREPARE DATA =====
   const foodItem = {
-    id: Date.now(), // use current timestamp as unique ID
     name: foodName,
     description: foodDescription,
-    price: price,
-    availability: selectedAvailability,
-    cuisine: selectedCuisine
+    price: parseFloat(price), // Convert to number
+    availability: selectedAvailability === 'Yes' ? true : false,
+    cuisine: selectedCuisine,
+    createdAt: new Date().toISOString()
   };
 
-  // get existing items from localStorage (or empty array if nothing saved yet)
-  let foodItems = JSON.parse(localStorage.getItem('foodItems')) || [];
-  
-  // add the new item to the array
-  foodItems.push(foodItem);
-  
-  // save the updated array back to localStorage
-  localStorage.setItem('foodItems', JSON.stringify(foodItems));
+  console.log('📝 Saving food item:', foodItem);
 
-  // show success message and redirect to menu page
-  alert('Food item added successfully!');
-  window.location.href = 'vendor-menu.html';
+  try {
+    if (!db || !vendorDocId) {
+      alert('❌ Error: Database not initialized. Please refresh the page.');
+      return;
+    }
+
+    // Disable button to prevent multiple clicks
+    addItemBtn.disabled = true;
+    addItemBtn.textContent = 'Saving...';
+
+    // Save to Menu subcollection in Firestore
+    const vendorRef = db.collection('vendors').doc(vendorDocId);
+    const menuCollectionRef = vendorRef.collection('Menu');
+    
+    // Add document with auto-generated ID
+    const docRef = await menuCollectionRef.add(foodItem);
+    
+    console.log('✅ Food item saved successfully with ID:', docRef.id);
+    
+    // Show success message
+    alert('✅ Food item added successfully!');
+    
+    // Clear sessionStorage
+    sessionStorage.removeItem('tempFoodData');
+    
+    // Redirect back to menu page
+    window.location.href = 'vendor-menu.html';
+
+  } catch (error) {
+    console.error('❌ Error saving food item:', error);
+    alert('❌ Error saving food item: ' + error.message);
+    
+    // Re-enable button
+    addItemBtn.disabled = false;
+    addItemBtn.textContent = 'Add Item';
+  }
 });
